@@ -14,10 +14,9 @@
 			</hgroup>
 			<nav>
 				<ul>
-					<li><a href="<?php echo base_url().'index.php/web/form_req_asm' ?>">Create New Form</a></li>
-					<li><a href="<?php echo base_url().'index.php/web/home_req_asm' ?>">Status Check</a></li>
-					<li><a href="<?php echo base_url().'index.php/web/change_approval_asm' ?>">Approval</a></li>
-					<li><a href="<?php echo base_url().'index.php/web/logout' ?>">Logout</a></li>
+					<li><a href="<?php echo base_url().'web/form_requester' ?>">Create New Form</a></li>
+					<li><a href="<?php echo base_url().'/web/home_requester' ?>">Status Check</a></li>
+					<li><a href="<?php echo base_url().'/web/logout' ?>">Logout</a></li>
 				</ul>
 			</nav>
 			<div class="clear"></div>

@@ -68,7 +68,7 @@ input[type=submit]:hover {
 <h2>Requisition Form Information System</h2>
 
 <div class="container">
-  <form action="<?php echo base_url(). 'crud/form_tambah_req_asm'; ?>" method="POST">
+  <form action="<?php echo base_url(). 'crud/form_tambah_requester'; ?>" method="POST">
     <div class="row">
       <div class="col-25">
         <label for="from">From</label>

@@ -1,11 +1,12 @@
 <section>
 <h1><?php echo $judul ?></h1>
   <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Input ticket number here ..." name="search">
-      <br><br><button type="submit">Go</button><br><br><br>
+    <form action="<?php echo base_url(). 'web/search_change'; ?>" method="get">
+      <input type="text" placeholder="input ticket number here ..." name="search">
+      <br><br><br>
+      <input type="submit" value="Search">
     </form>
-  </div>
+  </div><br><br><br><br>
   </script>
   <style>
 * {
@@ -74,7 +75,7 @@ input[type=submit]:hover {
 </style>
 
 <div class="container">
-  <form action="<?php echo base_url(). 'crud/form_tambah'; ?>" method="POST">
+  <form action="<?php echo base_url(). 'crud/form_update_process'; ?>" method="POST">
     <div class="row">
       <div class="col-25">
         <label for="No. Ticket">No. Ticket:</label>
@@ -83,7 +84,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->noticket;
-        }?>" readonly>
+        }?>" name="noticket" readonly>
       </div>
     </div>
     <div class="row">
@@ -94,7 +95,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->dari;
-          }?>" readonly>
+          }?>" name="from" readonly>
       </div>
     </div>
     <div class="row">
@@ -105,7 +106,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->untuk;
-          }?>" readonly>
+          }?>" name="to" readonly>
       </div>
     </div>
     <div class="row">
@@ -116,7 +117,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->date;
-          }?>" readonly>
+          }?>" name="date" readonly>
       </div>
     </div>
     <div class="row">
@@ -127,7 +128,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->kasus;
-          }?>" readonly>
+          }?>" name="case" readonly>
       </div>
     </div>
     <div class="row">
@@ -138,7 +139,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->duty;
-          }?>" readonly>
+          }?>" name="duty" readonly>
       </div>
     </div>
     <div class="row">
@@ -149,7 +150,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->dateoec;
-          }?>" readonly>
+          }?>" name="dec" readonly>
       </div>
     </div>
     <div class="row">
@@ -160,7 +161,7 @@ input[type=submit]:hover {
        <input type="text" value="<?php
           foreach($form as $f){
             echo $f->systemint;
-          }?>" readonly>
+          }?>" name="si" readonly>
       </div>
     </div>
     <div class="row">
@@ -171,7 +172,7 @@ input[type=submit]:hover {
           <input type="text" value="<?php
           foreach($form as $f){
             echo $f->urgency;
-          }?>" readonly>
+          }?>" name="urgency" readonly>
       </div>
     </div>
     <div class="row">
@@ -182,7 +183,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->description;
-          }?>" readonly>
+          }?>" name="description" readonly>
       </div>
     </div>
     <div class="row">
@@ -193,7 +194,7 @@ input[type=submit]:hover {
         <input type="text" value="<?php
           foreach($form as $f){
             echo $f->approvalstatus;
-          }?>" readonly>
+          }?>" name="approvalstatus" readonly>
       </div>
     </div>
     <div class="row">

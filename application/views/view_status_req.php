@@ -1,7 +1,7 @@
 <section>
 <h1><?php echo $judul ?></h1>
 <div class="search-container">
-    <form action="<?php echo base_url(). 'web/search_history'; ?>" method="get">
+    <form action="<?php echo base_url(). 'web/search_req'; ?>" method="get">
       <input type="text" placeholder="your ticket number here ..." name="search">
       <input type="submit" value="Search">
     </form>
