@@ -86,6 +86,8 @@ class Crud extends CI_Controller{
 			'description' => $description
 			);
 		$this->m_data->input_data($data,'form');
+		$noticket = (int)$this->m_data->get_noticket($data)->row()->noticket;
+		echo $noticket;
 
 		$config = array(
 			'protocol' => 'smtp',
@@ -106,8 +108,8 @@ class Crud extends CI_Controller{
 			$this->email->from('catur.hutabarat@gmail.com', 'Kawasaki RFS');
 			$this->email->to($this->session->userdata('email'));
 			$this->email->subject('New Requisition Form Notification');
-			/*$noticket = (int)$this->m_data->get_noticket($get_noticket)->row()->noticket;*/
-			$this->email->message('You need to approve new Requisition Form with ticket number : ');
+
+			$this->email->message('You need to approve new Requisition Form with ticket number : '.$noticket);
 		
 				if($this->email->send())
 				{

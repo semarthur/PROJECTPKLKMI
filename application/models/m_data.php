@@ -27,7 +27,8 @@ class M_data extends CI_Model{
 		$this->db->update($table,$data);
 	}
 
-	/*function get_noticket($get_noticket){
-		return $this->db->query("select * from form where noticket = \"$get_noticket\"");
-	}*/
+	function get_noticket($where){		
+	return $this->db->get_where('form',$where);
+	}
+
 }
