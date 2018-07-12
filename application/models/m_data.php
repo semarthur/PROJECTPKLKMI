@@ -28,7 +28,10 @@ class M_data extends CI_Model{
 	}
 
 	function get_noticket($where){		
-	return $this->db->get_where('form',$where);
-	}
+		return $this->db->get_where('form',$where);
+	} 
 
+	function get($table){
+		return $this->db->get($table);
+	}
 }

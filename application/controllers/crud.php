@@ -60,6 +60,42 @@ class Crud extends CI_Controller{
 			'description' => $description
 			);
 		$this->m_data->input_data($data,'form');
+
+		$temp = $this->m_data->tampil_data()->result();
+		$last_noticket = $temp[count($temp) - 1]->noticket;
+		$noticket = (int)$this->m_data->get_noticket($data)->row()->noticket;
+
+		$config = array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.gmail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'catur.hutabarat@gmail.com',
+			'smtp_pass' => 'qwepoi123098',
+			'mailtype' => 'html',
+			'charset' => 'iso-8859-1',
+			'wordwrap' => TRUE
+		);
+
+			$this->load->library('email',$config);
+
+			$this->email->initialize($config);
+
+			$this->email->set_newline("\r\n");
+			$this->email->from('catur.hutabarat@gmail.com', 'Kawasaki RFS');
+			$this->email->to($this->session->userdata('email'));
+			$this->email->subject('New Requisition Form Notification');
+			$this->email->message('You have submitted new Requisition Form
+								   Check the status of your Requisition Form frequently in http://localhost/belajar/
+								   Your ticket number : '.$noticket);
+		
+				if($this->email->send())
+				{
+					redirect('web/home_requester');
+				}else
+				{
+					show_error($this->email->print_debugger());
+				}
+
 		redirect('web/home_requester');
 	}
 
@@ -86,8 +122,9 @@ class Crud extends CI_Controller{
 			'description' => $description
 			);
 		$this->m_data->input_data($data,'form');
+		$temp = $this->m_data->tampil_data()->result();
+		$last_noticket = $temp[count($temp) - 1]->noticket;
 		$noticket = (int)$this->m_data->get_noticket($data)->row()->noticket;
-		echo $noticket;
 
 		$config = array(
 			'protocol' => 'smtp',
@@ -108,7 +145,6 @@ class Crud extends CI_Controller{
 			$this->email->from('catur.hutabarat@gmail.com', 'Kawasaki RFS');
 			$this->email->to($this->session->userdata('email'));
 			$this->email->subject('New Requisition Form Notification');
-
 			$this->email->message('You need to approve new Requisition Form with ticket number : '.$noticket);
 		
 				if($this->email->send())
@@ -195,6 +231,10 @@ class Crud extends CI_Controller{
 			);
 
 		$this->m_data->update_status($where,$data,'form');
+		$this->m_data->input_data($data,'form');
+		$temp = $this->m_data->tampil_data()->result();
+		$last_noticket = $temp[count($temp) - 1]->noticket;
+		$noticket = (int)$this->m_data->get_noticket($data)->row()->noticket;
 
 		if ($this->input->post('approvalstatus') == "Approved")
 		{
