@@ -34,4 +34,12 @@ class M_data extends CI_Model{
 	function get($table){
 		return $this->db->get($table);
 	}
+
+	function get_jabatan_sekarang($email){
+		return $this->db->query("select id_jabatan,Departemen from account where email LIKE \"%$email%\"");
+	}
+
+	function get_higher_jabatan($id_jabatan, $departemen){
+		return $this->db->query("select * from account where id_jabatan LIKE \"%$id_jabatan%\" AND Departemen LIKE \"%$departemen%\"");
+	}
 }
