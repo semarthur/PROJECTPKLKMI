@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2018 at 04:30 AM
+-- Generation Time: Jul 16, 2018 at 08:27 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -42,9 +42,9 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`id_account`, `email`, `password`, `Jabatan`, `Departemen`) VALUES
 (1, 'khairulrizal39@gmail.com', 'qwepoi', 'Staff', 'HRD'),
-(2, 'viceheadexternal@gmail.com', 'qwepoi', 'Assistant Manager', 'Financial & Acconting'),
-(3, 'sem.hutabarat@gmail.com', 'qwepoi', 'Dept Head', 'Production'),
-(4, 'requester4@gmail.com', 'qwepoi', 'Staff', 'Information System'),
+(2, 'viceheadexternal@gmail.com', 'qwepoi', 'Assistant Manager', 'HRD'),
+(3, 'requester3@gmail.com', 'qwepoi', 'Dept Head', 'HRD'),
+(4, 'sem.hutabarat@gmail.com', 'qwepoi', 'Staff', 'Information System'),
 (5, 'requester5@gmail.com', 'qwepoi', 'Assistant Manager', 'Information System'),
 (6, 'requester6@gmail.com', 'qwepoi', 'Dept Head', 'Information System');
 
@@ -56,7 +56,7 @@ INSERT INTO `account` (`id_account`, `email`, `password`, `Jabatan`, `Departemen
 
 CREATE TABLE `form` (
   `noticket` int(11) NOT NULL,
-  `dari` varchar(20) NOT NULL,
+  `dari` varchar(50) NOT NULL,
   `untuk` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `kasus` varchar(50) NOT NULL,
@@ -74,15 +74,11 @@ CREATE TABLE `form` (
 --
 
 INSERT INTO `form` (`noticket`, `dari`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(34, 'Sonia (PR)', 'SWD', '2018-07-10', 'LAN / WAN / Communication', 'Problem Solving', '2018-07-10', 'yes', 'immedietly', 'tidak bisa konek internet', 'Pending', 'Not Processed'),
-(35, 'Andini (HR)', 'ICT', '2018-07-10', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-07-10', 'no', 'immedietly', 'Tolong ganti catridge karena sudah habis thx', 'Pending', 'Not Processed'),
-(36, 'Hanni (Finance)', 'SWD', '2018-07-10', 'Software Package', 'Installation', '2018-07-11', 'yes', 'normal', 'install software', 'Pending', 'Not Processed'),
-(37, 'Rini (PR)', 'ICT', '2018-07-11', 'LAN / WAN / Communication', 'Problem Solving', '2018-07-11', 'yes', 'immedietly', 'tidak bisa konek internet tolong bantu perbaiki thx', 'Pending', 'Not Processed'),
-(38, 'Endang (F&A)', 'ICT', '2018-07-11', 'Hardware', 'Service / Repair', '2018-07-14', 'no', 'normal', 'Printer eror padahal driver jalan dan tinta masih banyak', 'Pending', 'Not Processed'),
-(40, 'John (M&S)', 'SWD', '2018-07-11', 'System Application', 'Additional / Change / Delete', '2018-08-10', 'yes', 'normal', 'tolong buatkan program untuk rekap data penjualan dari dealer yang ada', 'Pending', 'Not Processed'),
-(41, 'Indra (HRD)', 'ICT', '2018-07-11', 'LAN / WAN / Communication', 'Service / Repair', '2018-07-11', 'yes', 'immedietly', 'tidak bisa konek internet', 'Pending', 'Not Processed'),
-(102, 'Dini (HR)', 'ICT', '2018-07-11', 'Software Package', 'Installation', '2018-07-11', 'Yes', 'Immedietly', 'Office gak bisa\r\nmohon dibantu thx', 'Pending', 'Not Processed'),
-(103, 'Yuni (Produksi)', 'ICT', '2018-07-11', 'Hardware', 'Service / Repair', '2018-08-01', 'no', 'normal', 'Kamera untuk foto pabrik rusak\r\ntolong diperbaiki thx', 'Pending', 'Not Processed');
+(143, 'Rizal (HR)', 'SWD', '2018-07-12', 'Software Package', 'Additional / Change / Delete', '2018-07-26', 'yes', 'normal', 'Untuk rekap data karyawan yang sudah mau pensiunthx', 'Approved', 'On Process'),
+(144, 'Donna (Produksi)', 'SWD', '2018-07-12', 'Software Package', 'Installation', '0000-00-00', 'no', 'immedietly', 'Word saya need activation keythx', 'Approved', 'Not Processed'),
+(147, 'Toto', 'ICT', '2018-07-13', 'Software Package', 'Additional / Change / Delete', '2018-07-13', 'yes', 'normal', 'test123', 'Approved', 'Not Processed'),
+(152, 'Fika (purchasing)', 'ICT', '2018-07-16', 'Software Package', 'Installation', '2018-07-16', 'no', 'immedietly', 'driver printer tidak terbaca tolong dibantu thx', 'Pending', 'Not Processed'),
+(154, 'Jenny (QC)', 'SWD', '2018-07-16', 'Software Package', 'Problem Solving', '2018-07-16', 'yes', 'immedietly', 'selalu eror saat submit data', 'Pending', 'Not Processed');
 
 -- --------------------------------------------------------
 
@@ -135,7 +131,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

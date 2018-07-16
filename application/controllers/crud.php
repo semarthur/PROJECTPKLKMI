@@ -33,7 +33,42 @@ class Crud extends CI_Controller{
 			'description' => $description
 			);
 
+
 		$this->m_data->input_data($data,'form');
+		$temp = $this->m_data->tampil_data()->result();
+		$last_noticket = $temp[count($temp) - 1]->noticket;
+		$noticket = (int)$this->m_data->get_noticket($data)->row()->noticket;
+
+		$config = array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.gmail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'catur.hutabarat@gmail.com',
+			'smtp_pass' => 'qwepoi123098',
+			'mailtype' => 'html',
+			'charset' => 'iso-8859-1',
+			'wordwrap' => TRUE
+		);
+
+			$this->load->library('email',$config);
+
+			$this->email->initialize($config);
+
+			$this->email->set_newline("\r\n");
+			$this->email->from('catur.hutabarat@gmail.com', 'Kawasaki RFS');
+			$this->email->to($this->session->userdata('email'));
+			$this->email->subject('New Requisition Form Notification');
+			$this->email->message('You are from Information System. You just need to change the status.
+								   Your ticket number : '.$noticket);
+		
+				if($this->email->send())
+				{
+					redirect('web/home');
+				}else
+				{
+					show_error($this->email->print_debugger());
+				}
+
 		redirect('web/home');
 	}
 
@@ -90,7 +125,33 @@ class Crud extends CI_Controller{
 		
 				if($this->email->send())
 				{
+					$this->email->clear(TRUE);
+					$last_noticket = $temp[count($temp) - 1]->noticket;
+					$noticket = (int)$this->m_data->get_noticket($data)->row()->noticket;
+
+					$config = array(
+						'protocol' => 'smtp',
+						'smtp_host' => 'ssl://smtp.gmail.com',
+						'smtp_port' => 465,
+						'smtp_user' => 'catur.hutabarat@gmail.com',
+						'smtp_pass' => 'qwepoi123098',
+						'mailtype' => 'html',
+						'charset' => 'iso-8859-1',
+						'wordwrap' => TRUE
+					);
+
+					$this->load->library('email',$config);
+
+					$this->email->initialize($config);
+
+					$this->email->set_newline("\r\n");
+					$this->email->from('catur.hutabarat@gmail.com', 'Kawasaki RFS');
+					$this->email->to('viceheadexternal@gmail.com');
+					$this->email->subject('New Requisition Form Notification');
+					$this->email->message('You need to approve new Requisition Form with ticket number : '.$noticket);
+
 					redirect('web/home_requester');
+
 				}else
 				{
 					show_error($this->email->print_debugger());
@@ -231,9 +292,8 @@ class Crud extends CI_Controller{
 			);
 
 		$this->m_data->update_status($where,$data,'form');
-		$this->m_data->input_data($data,'form');
+		$this->m_data->get_noticket($data,'form');
 		$temp = $this->m_data->tampil_data()->result();
-		$last_noticket = $temp[count($temp) - 1]->noticket;
 		$noticket = (int)$this->m_data->get_noticket($data)->row()->noticket;
 
 		if ($this->input->post('approvalstatus') == "Approved")
@@ -258,7 +318,7 @@ class Crud extends CI_Controller{
 			$this->email->to('khairulrizal39@gmail.com');
 			$this->email->subject('Requisition Form Approved');
 			$this->email->message('Your Requisition Form is Approved.
-								   Your ticket number : ');
+								   Your ticket number : '.$noticket);
 		
 				if($this->email->send())
 				{
@@ -290,7 +350,7 @@ class Crud extends CI_Controller{
 			$this->email->to('khairulrizal39@gmail.com');
 			$this->email->subject('Requisition Form Not Approved');
 			$this->email->message('Your Requisition Form is not Approved.
-								   Your ticket number : ');
+								   Your ticket number : '.$noticket);
 		
 				if($this->email->send())
 				{

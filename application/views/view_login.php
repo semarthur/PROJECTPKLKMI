@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/login.css">
-</head>
+</head><title>PT. KMI</title>
 
   <form class="login" form action="<?php echo base_url(). 'web/check_login'; ?>" method="POST">
      <h2 class="login-title"><center>Requisition Form Application</center></h2>
