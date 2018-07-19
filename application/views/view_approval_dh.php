@@ -1,7 +1,7 @@
 <section>
 <h1><?php echo $judul ?></h1>
   <div class="search-container">
-    <form action="<?php echo base_url(). 'web/search_change_approval'; ?>" method="get">
+    <form action="<?php echo base_url(). 'web/search_change_approval_dh'; ?>" method="get">
       <input type="text" placeholder="input ticket number here ..." name="search">
       <br><br><br>
       <input type="submit" value="Search">
@@ -75,7 +75,7 @@ input[type=submit]:hover {
 </style>
 
 <div class="container">
-  <form action="<?php echo base_url(). 'crud/form_update_approval'; ?>" method="POST">
+  <form action="<?php echo base_url(). 'crud/form_update_approval_dh'; ?>" method="POST">
     <div class="row">
       <div class="col-25">
         <label for="No. Ticket">No. Ticket:</label>
@@ -207,7 +207,7 @@ input[type=submit]:hover {
                           foreach ($form as $f) {
                             echo "<tr>";
             echo "<td>". $f->approvalstatus."</td>";}?>>
-          <option value="Approved by A. Manager">Approved by A. Manager</option>
+          <option value="Approved by Dept. Head">Approved by Dept. Head</option>
           <option value="Not Approved">Not Approved</option>
         </select>
       </div>

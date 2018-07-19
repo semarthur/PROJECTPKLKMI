@@ -37,6 +37,14 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer_asm',$data);
 	}
 
+	public function home_req_dh(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header_dh',$data);
+		$data['form'] = $this->m_data->tampil_data()->result();
+		$this->load->view('view_status_dh',$data);
+		$this->load->view('v_footer_dh',$data);
+	}
+
 	public function change_status(){
 		$noticket = $this->input->get('search');
 		$data['judul'] = "Change Status";
@@ -63,10 +71,23 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer_asm',$data);
 	}
 
+	public function change_approval_dh(){
+		$noticket = $this->input->get('search');
+		$data['judul'] = "Change Status Approval";
+		$this->load->view('v_header_dh',$data);
+		if(is_null($noticket)){
+			$data['form'] = $this->m_data->search_ticket("kosong")->result();
+		} else {
+			$data['form'] = $this->m_data->search_ticket($noticket)->result();
+		}
+		$this->load->view('view_approval_dh',$data);
+		$this->load->view('v_footer_dh',$data);
+	}
+
 	public function history(){		
 		$data['judul'] = "History";
 		$this->load->view('v_header',$data);
-		$data['form'] = $this->m_data->tampil_data()->result();
+		$data['form_done'] = $this->m_data->tampil_data_done()->result();
 		$this->load->view('view_history',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -90,6 +111,13 @@ class Web extends CI_Controller {
 		$this->load->view('v_header_asm',$data);
 		$this->load->view('view_form_asm',$data);
 		$this->load->view('v_footer_asm',$data);
+	}
+
+	public function form_req_dh(){		
+		$data['judul'] = "Create New Form";
+		$this->load->view('v_header_dh',$data);
+		$this->load->view('view_form_dh',$data);
+		$this->load->view('v_footer_dh',$data);
 	}
 
 	public function logout(){
@@ -159,6 +187,15 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer_asm',$data);
 	}
 
+	function search_req_dh(){ 
+		$search = $this->input->get('search');
+		$data['form'] = $this->m_data->search_ticket($search)->result();
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header_dh',$data);
+		$this->load->view('view_status_dh',$data);
+		$this->load->view('v_footer_dh',$data);
+	}
+
 	function search_change(){ 
 		$search = $this->input->get('search');
 		$data['form'] = $this->m_data->search_ticket($search)->result();
@@ -177,9 +214,18 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer_asm',$data);
 	}
 
-	function search_history(){ 
+	function search_change_approval_dh(){ 
 		$search = $this->input->get('search');
 		$data['form'] = $this->m_data->search_ticket($search)->result();
+		$data['judul'] = "Change Status Approval";
+		$this->load->view('v_header_dh',$data);
+		$this->load->view('view_approval_dh',$data);
+		$this->load->view('v_footer_dh',$data);
+	}
+
+	function search_history(){ 
+		$search = $this->input->get('search');
+		$data['form_done'] = $this->m_data->search_ticket_done($search)->result();
 		$data['judul'] = "History";
 		$this->load->view('v_header',$data);
 		$this->load->view('view_history',$data);

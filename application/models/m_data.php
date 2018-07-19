@@ -8,6 +8,11 @@ class M_data extends CI_Model{
 	function tampil_data(){
 		return $this->db->get('form');
 	}
+
+	function tampil_data_done(){
+		return $this->db->get('form_done');
+	}
+
 	function check_login($email,$password){		
 		$this->db->where('email',$email);
 		$this->db->where('password',$password);
@@ -16,6 +21,10 @@ class M_data extends CI_Model{
 
 	function search_ticket($search){
 		return $this->db->query("select * from form where noticket LIKE \"%$search%\"");
+	}
+
+	function search_ticket_done($search){
+		return $this->db->query("select * from form_done where noticket LIKE \"%$search%\"");
 	}
 
 	function edit_status($where,$table){		
@@ -29,6 +38,10 @@ class M_data extends CI_Model{
 
 	function get_noticket($where){		
 		return $this->db->get_where('form',$where);
+	}
+
+	function get_e_mail($where){		
+		return $this->db->get_where('form',$where);
 	} 
 
 	function get($table){
@@ -41,5 +54,15 @@ class M_data extends CI_Model{
 
 	function get_higher_jabatan($id_jabatan, $departemen){
 		return $this->db->query("select * from account where id_jabatan LIKE \"%$id_jabatan%\" AND Departemen LIKE \"%$departemen%\"");
+	}
+
+	function pindah_table($where,$data,$table){
+		$this->db->where($where);
+		$q = $this->db->get('form')->result();
+		foreach ($q as $r) { // loop over results
+        	$this->db->insert('form_done', $r); // insert each row to country table
+    	}
+    	$this->db->where($where);
+    	$this->db->delete('form');
 	}
 }

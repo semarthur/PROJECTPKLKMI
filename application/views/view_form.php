@@ -79,6 +79,14 @@ input[type=submit]:hover {
     </div>
     <div class="row">
       <div class="col-25">
+        <label for="email">E-mail</label>
+      </div>
+      <div class="col-25">
+        <input type="text" id="e_mail" name="e_mail" value=<?php echo $this->session->userdata('email')?>>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
         <label for="to">To</label>
       </div>
       <div class="col-25">

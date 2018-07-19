@@ -1,14 +1,4 @@
-<section>
-<h1><?php echo $judul ?></h1>
-  <div class="search-container">
-    <form action="<?php echo base_url(). 'web/search_change_approval'; ?>" method="get">
-      <input type="text" placeholder="input ticket number here ..." name="search">
-      <br><br><br>
-      <input type="submit" value="Search">
-    </form>
-  </div><br><br><br><br>
-  </script>
-  <style>
+<section><style>
 * {
     box-sizing: border-box;
 }
@@ -73,29 +63,18 @@ input[type=submit]:hover {
     }
 }
 </style>
+</head>
+
+<h2>Requisition Form Information System</h2>
 
 <div class="container">
-  <form action="<?php echo base_url(). 'crud/form_update_approval'; ?>" method="POST">
-    <div class="row">
-      <div class="col-25">
-        <label for="No. Ticket">No. Ticket:</label>
-      </div>
-      <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->noticket;
-        }?>" name="noticket" readonly>
-      </div>
-    </div>
+  <form action="<?php echo base_url(). 'crud/form_tambah_req_dh'; ?>" method="POST">
     <div class="row">
       <div class="col-25">
         <label for="from">From</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->dari;
-          }?>" name="from" readonly>
+        <input type="text" id="from" name="from" >
       </div>
     </div>
     <div class="row">
@@ -103,10 +82,7 @@ input[type=submit]:hover {
         <label for="email">E-mail</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->e_mail;
-          }?>" name="e_mail" readonly>
+        <input type="text" id="e_mail" name="e_mail" value=<?php echo $this->session->userdata('email')?>>
       </div>
     </div>
     <div class="row">
@@ -114,10 +90,10 @@ input[type=submit]:hover {
         <label for="to">To</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->untuk;
-          }?>" name="to" readonly>
+        <select id="to" name="to">
+          <option value="ICT">ICT</option>
+          <option value="SWD">SWD</option>
+        </select>
       </div>
     </div>
     <div class="row">
@@ -125,10 +101,7 @@ input[type=submit]:hover {
         <label for="date">Date</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->date;
-          }?>" name="date" readonly>
+        <input type="date" id="date" name="date">
       </div>
     </div>
     <div class="row">
@@ -136,10 +109,14 @@ input[type=submit]:hover {
         <label for="case">Case</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->kasus;
-          }?>" name="case" readonly>
+        <select id="case" name="case">
+          <option value="Software Package">Software Package</option>
+          <option value="System Application">System Application</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Data Communication / Internet">Data Communication / Internet</option>
+          <option value="LAN / WAN / Communication">LAN / WAN / Communication</option>
+          <option value="Order Catridge / Toner">Order Catridge / Toner</option>
+        </select>
       </div>
     </div>
     <div class="row">
@@ -147,10 +124,13 @@ input[type=submit]:hover {
         <label for="duty">Duty</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->duty;
-          }?>" name="duty" readonly>
+        <select id="duty" name="duty">
+          <option value="Additional / Change / Delete">Additional / Change / Delete</option>
+          <option value="Installation">Installation</option>
+          <option value="Training">Training</option>
+          <option value="Service / Repair">Service / Repair</option>
+          <option value="Problem Solving">Problem Solving</option>
+        </select>
       </div>
     </div>
     <div class="row">
@@ -158,10 +138,7 @@ input[type=submit]:hover {
         <label for="dec">Date of Expected Completion</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->dateoec;
-          }?>" name="dec" readonly>
+        <input type="date" id="dec" name="dec">
       </div>
     </div>
     <div class="row">
@@ -169,10 +146,11 @@ input[type=submit]:hover {
         <label for="si">System Integrated</label>
       </div>
       <div class="col-25">
-       <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->systemint;
-          }?>" name="si" readonly>
+       <select id="si" name="si">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <!-- textarea id="si" name="si" placeholder="if yes type here ..." style="height:50px"></textarea -->
       </div>
     </div>
     <div class="row">
@@ -180,10 +158,10 @@ input[type=submit]:hover {
         <label for="urgency">Urgency</label>
       </div>
       <div class="col-25">
-          <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->urgency;
-          }?>" name="urgency" readonly>
+          <select id="si" name="urgency">
+          <option value="normal">Normal</option>
+          <option value="immedietly">Immedietly</option>
+        </select>
       </div>
     </div>
     <div class="row">
@@ -191,25 +169,7 @@ input[type=submit]:hover {
         <label for="description">Description</label>
       </div>
       <div class="col-25">
-        <input type="text" value="<?php
-          foreach($form as $f){
-            echo $f->description;
-          }?>" name="description" readonly>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="Approval Status">Approval Status</label>
-      </div>
-      <div class="col-25">
-        <select id="approvalstatus" name="approvalstatus">
-          <option value= <?php 
-                          foreach ($form as $f) {
-                            echo "<tr>";
-            echo "<td>". $f->approvalstatus."</td>";}?>>
-          <option value="Approved by A. Manager">Approved by A. Manager</option>
-          <option value="Not Approved">Not Approved</option>
-        </select>
+        <textarea id="description" name="description" placeholder="write your description here ..." style="height:200px"></textarea>
       </div>
     </div>
     <div class="row">
@@ -217,4 +177,5 @@ input[type=submit]:hover {
     </div>
   </form>
 </div>
+
 </section>

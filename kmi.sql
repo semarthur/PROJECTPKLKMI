@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2018 at 08:27 AM
+-- Generation Time: Jul 19, 2018 at 10:32 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -33,6 +33,7 @@ CREATE TABLE `account` (
   `email` varchar(40) NOT NULL,
   `password` varchar(16) NOT NULL,
   `Jabatan` enum('Staff','Assistant Manager','Dept Head','') NOT NULL,
+  `id_jabatan` int(1) NOT NULL,
   `Departemen` enum('Financial & Acconting','HRD','PR','Information System','Production') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,13 +41,17 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id_account`, `email`, `password`, `Jabatan`, `Departemen`) VALUES
-(1, 'khairulrizal39@gmail.com', 'qwepoi', 'Staff', 'HRD'),
-(2, 'viceheadexternal@gmail.com', 'qwepoi', 'Assistant Manager', 'HRD'),
-(3, 'requester3@gmail.com', 'qwepoi', 'Dept Head', 'HRD'),
-(4, 'sem.hutabarat@gmail.com', 'qwepoi', 'Staff', 'Information System'),
-(5, 'requester5@gmail.com', 'qwepoi', 'Assistant Manager', 'Information System'),
-(6, 'requester6@gmail.com', 'qwepoi', 'Dept Head', 'Information System');
+INSERT INTO `account` (`id_account`, `email`, `password`, `Jabatan`, `id_jabatan`, `Departemen`) VALUES
+(1, 'khairulrizal39@gmail.com', 'qwepoi', 'Staff', 1, 'HRD'),
+(2, 'viceheadexternal@gmail.com', 'qwepoi', 'Assistant Manager', 2, 'HRD'),
+(3, 'fahrezi182@gmail.com', 'qwepoi', 'Dept Head', 3, 'HRD'),
+(4, 'sem.hutabarat@gmail.com', 'qwepoi', 'Staff', 1, 'Information System'),
+(5, 'requester5@gmail.com', 'qwepoi', 'Assistant Manager', 2, 'Information System'),
+(6, 'requester6@gmail.com', 'qwepoi', 'Dept Head', 3, 'Information System'),
+(7, 'semarthur@student.ub.ac.id', 'qwepoi', 'Staff', 1, 'HRD'),
+(8, 'indoprydee@gmail.com', 'qwepoi', 'Staff', 1, 'Financial & Acconting'),
+(9, 'helena.desembra@gmail.com', 'qwepoi', 'Assistant Manager', 2, 'Financial & Acconting'),
+(10, 'anandafn8@gmail.com', 'qwepoi', 'Dept Head', 3, 'Financial & Acconting');
 
 -- --------------------------------------------------------
 
@@ -57,6 +62,7 @@ INSERT INTO `account` (`id_account`, `email`, `password`, `Jabatan`, `Departemen
 CREATE TABLE `form` (
   `noticket` int(11) NOT NULL,
   `dari` varchar(50) NOT NULL,
+  `e_mail` varchar(50) NOT NULL,
   `untuk` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `kasus` varchar(50) NOT NULL,
@@ -65,7 +71,7 @@ CREATE TABLE `form` (
   `systemint` varchar(300) NOT NULL,
   `urgency` varchar(10) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `approvalstatus` enum('Pending','Not Approved','Approved','') NOT NULL,
+  `approvalstatus` enum('Pending','Not Approved','Approved by A. Manager','Approved by Dept. Head') NOT NULL,
   `process` enum('Not Processed','On Process','Done','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -73,12 +79,11 @@ CREATE TABLE `form` (
 -- Dumping data for table `form`
 --
 
-INSERT INTO `form` (`noticket`, `dari`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(143, 'Rizal (HR)', 'SWD', '2018-07-12', 'Software Package', 'Additional / Change / Delete', '2018-07-26', 'yes', 'normal', 'Untuk rekap data karyawan yang sudah mau pensiunthx', 'Approved', 'On Process'),
-(144, 'Donna (Produksi)', 'SWD', '2018-07-12', 'Software Package', 'Installation', '0000-00-00', 'no', 'immedietly', 'Word saya need activation keythx', 'Approved', 'Not Processed'),
-(147, 'Toto', 'ICT', '2018-07-13', 'Software Package', 'Additional / Change / Delete', '2018-07-13', 'yes', 'normal', 'test123', 'Approved', 'Not Processed'),
-(152, 'Fika (purchasing)', 'ICT', '2018-07-16', 'Software Package', 'Installation', '2018-07-16', 'no', 'immedietly', 'driver printer tidak terbaca tolong dibantu thx', 'Pending', 'Not Processed'),
-(154, 'Jenny (QC)', 'SWD', '2018-07-16', 'Software Package', 'Problem Solving', '2018-07-16', 'yes', 'immedietly', 'selalu eror saat submit data', 'Pending', 'Not Processed');
+INSERT INTO `form` (`noticket`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
+(159, 'Rizal (HR)', 'khairulrizal39@gmail.com', 'ICT', '2018-07-18', 'Data Communication / Internet', 'Problem Solving', '2018-07-18', 'yes', 'immedietly', 'tidak bisa masuk server untuk lihat datathx', 'Approved by A. Manager', 'Done'),
+(165, 'Doni (HR)', 'viceheadexternal@gmail.com', 'ICT', '2018-07-18', 'Data Communication / Internet', 'Problem Solving', '2018-07-18', 'yes', 'immedietly', 'Tidak bisa konek internet mohon bantuannya terimakasih', 'Approved by A. Manager', 'Done'),
+(166, 'Samuel Arthur (HR)', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-18', 'LAN / WAN / Communication', 'Problem Solving', '2018-07-18', 'yes', 'normal', 'untuk masuk ke sistem sangat lambat tolong di cek thx', 'Approved by Dept. Head', 'Done'),
+(167, 'Elkaf Fahrezi (HR)', 'fahrezi182@gmail.com', 'SWD', '2018-07-18', 'Software Package', 'Installation', '2018-07-18', 'no', 'immedietly', 'Word saya eror tolong dilihat dan diperbaiki thx', 'Approved by Dept. Head', 'Done');
 
 -- --------------------------------------------------------
 
@@ -87,8 +92,9 @@ INSERT INTO `form` (`noticket`, `dari`, `untuk`, `date`, `kasus`, `duty`, `dateo
 --
 
 CREATE TABLE `form_done` (
-  `noticket` int(100) NOT NULL,
-  `dari` varchar(20) NOT NULL,
+  `noticket` int(11) NOT NULL,
+  `dari` varchar(50) NOT NULL,
+  `e_mail` varchar(50) NOT NULL,
   `untuk` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `kasus` varchar(50) NOT NULL,
@@ -97,9 +103,18 @@ CREATE TABLE `form_done` (
   `systemint` varchar(300) NOT NULL,
   `urgency` varchar(10) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `approvalstatus` varchar(15) NOT NULL,
-  `process` varchar(15) NOT NULL
+  `approvalstatus` varchar(50) NOT NULL,
+  `process` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `form_done`
+--
+
+INSERT INTO `form_done` (`noticket`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
+(169, 'Josua Fernando (F&A)', 'indoprydee@gmail.com', 'ICT', '2018-07-19', 'Hardware', 'Service / Repair', '2018-07-19', 'no', 'immedietly', 'Printer rusak tolong diservice dan diganti sementara dulu thx', 'Approved by Dept. Head', 'Done'),
+(170, 'Helena Desembra (F&A)', 'helena.desembra@gmail.com', 'SWD', '2018-07-19', 'System Application', 'Additional / Change / Delete', '2018-08-19', 'yes', 'normal', 'tolong buatkan program untuk bisa ubah data excel jadi pdf thx', 'Approved by A. Manager', 'Done'),
+(171, 'Ananda Fitri (F&A)', 'anandafn8@gmail.com', 'ICT', '2018-07-19', 'Data Communication / Internet', 'Problem Solving', '2018-07-19', 'yes', 'immedietly', 'disini tertulis connected, tapi tak bisa masuk server, tolong dibantu thx', 'Approved by Dept. Head', 'Done');
 
 --
 -- Indexes for dumped tables
@@ -118,6 +133,12 @@ ALTER TABLE `form`
   ADD PRIMARY KEY (`noticket`);
 
 --
+-- Indexes for table `form_done`
+--
+ALTER TABLE `form_done`
+  ADD PRIMARY KEY (`noticket`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -125,13 +146,13 @@ ALTER TABLE `form`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

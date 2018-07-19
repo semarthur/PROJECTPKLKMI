@@ -1,7 +1,7 @@
 <section>
 <h1><?php echo $judul ?></h1>
 <div class="search-container">
-    <form action="<?php echo base_url(). 'web/search_history'; ?>" method="get">
+    <form action="<?php echo base_url(). 'web/search_req_dh'; ?>" method="get">
       <input type="text" placeholder="your ticket number here ..." name="search">
       <input type="submit" value="Search">
     </form>
@@ -40,20 +40,20 @@
         <th>Status</th>
   	  </tr>
   	  	<?php
-		foreach($form_done as $fd){
+		foreach($form as $f){
 			echo "<tr>";
-			echo "<td>". $fd->noticket."</td>";
-			echo "<td>". $fd->dari."</td>";
-			echo "<td>". $fd->untuk."</td>";
-			echo "<td>".$fd->date."</td>";
-			echo "<td>".$fd->kasus."</td>";
-			echo "<td>".$fd->duty."</td>";
-			echo "<td>".$fd->dateoec."</td>";
-			echo "<td>".$fd->systemint."</td>";
-			echo "<td>".$fd->urgency."</td>";
-			echo "<td>".$fd->description."</td>";
-      echo "<td>".$fd->approvalstatus."</td>";
-      echo "<td>".$fd->process."</td>";
+			echo "<td>". $f->noticket."</td>";
+			echo "<td>". $f->dari."</td>";
+			echo "<td>". $f->untuk."</td>";
+			echo "<td>".$f->date."</td>";
+			echo "<td>".$f->kasus."</td>";
+			echo "<td>".$f->duty."</td>";
+			echo "<td>".$f->dateoec."</td>";
+			echo "<td>".$f->systemint."</td>";
+			echo "<td>".$f->urgency."</td>";
+			echo "<td>".$f->description."</td>";
+      echo "<td>".$f->approvalstatus."</td>";
+      echo "<td>".$f->process."</td>";
 		}
 			?>
 	</table>
