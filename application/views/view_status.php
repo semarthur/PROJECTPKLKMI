@@ -7,13 +7,13 @@
     </form>
   </div><br><br>
 <a>SORT DATA BY</a>
-<li ><a href="<?php echo base_url("web/home_sort_urgency_normal");?>">Urgency Normal</a> </li>
-<li><a href="<?php echo base_url("web/home_sort_urgency_immedietly");?>">Urgency Immedietly</a> </li>
-<li><a href="<?php echo base_url("web/home_sort_approved_pending");?>">Approved Pending</a> </li>
-<li><a href="<?php echo base_url("web/home_sort_approved_asm");?>">Approved by A. Manager</a> </li>
-<li><a href="<?php echo base_url("web/home_sort_approved_dh");?>">Approved by Dept. Head</a> </li>
-<li><a href="<?php echo base_url("web/home_sort_process_np");?>">Not Processed</a> </li>
-<li><a href="<?php echo base_url("web/home_sort_process_op");?>">On Process</a> </li>
+<li><a href="<?php echo base_url("web/home_sort_urgency_normal");?>">Urgency Normal : <?php echo $count_urgency_normal ?></a> </li>
+<li><a href="<?php echo base_url("web/home_sort_urgency_immedietly");?>">Urgency Immedietly : <?php echo $count_urgency_immedietly ?></a> </li>
+<li><a href="<?php echo base_url("web/home_sort_approved_pending");?>">Approved Pending : <?php echo $count_approved_pending ?></a> </li>
+<li><a href="<?php echo base_url("web/home_sort_approved_asm");?>">Approved by A. Manager : <?php echo $count_approved_asm ?></a> </li>
+<li><a href="<?php echo base_url("web/home_sort_approved_dh");?>">Approved by Dept. Head : <?php echo $count_approved_dh ?></a> </li>
+<li><a href="<?php echo base_url("web/home_sort_process_np");?>">Not Processed : <?php echo $count_process_np ?></a> </li>
+<li><a href="<?php echo base_url("web/home_sort_process_op");?>">On Process : <?php echo $count_process_op ?></a> </li>
   <br><br>
   <style>
 	table {

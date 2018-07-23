@@ -17,6 +17,20 @@ class Web extends CI_Controller {
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
 		$data['form'] = $this->m_data->tampil_data()->result();
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -24,7 +38,21 @@ class Web extends CI_Controller {
 	public function home_sort_urgency_normal(){		
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
-		$data['form'] = $this->m_data->sort_data_urgency_normal()->result();	
+		$data['form'] = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);	
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -33,6 +61,20 @@ class Web extends CI_Controller {
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
 		$data['form'] = $this->m_data->sort_data_urgency_immedietly()->result();	
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -42,6 +84,20 @@ class Web extends CI_Controller {
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
 		$data['form'] = $this->m_data->sort_data_approved_pending()->result();	
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -50,6 +106,20 @@ class Web extends CI_Controller {
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
 		$data['form'] = $this->m_data->sort_data_approved_asm()->result();
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -58,6 +128,20 @@ class Web extends CI_Controller {
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
 		$data['form'] = $this->m_data->sort_data_approved_dh()->result();	
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -66,6 +150,20 @@ class Web extends CI_Controller {
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
 		$data['form'] = $this->m_data->sort_data_process_np()->result();	
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -74,6 +172,20 @@ class Web extends CI_Controller {
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
 		$data['form'] = $this->m_data->sort_data_process_op()->result();	
+		$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
+		$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
+		$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
+		$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
+		$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
+		$data_process_np = $this->m_data->sort_data_process_np()->result();
+		$data_process_op = $this->m_data->sort_data_process_op()->result();
+		$data['count_urgency_normal'] = count($data_urgency_normal);
+		$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
+		$data['count_approved_pending'] = count($data_approved_pending);
+		$data['count_approved_asm'] = count($data_approved_asm);
+		$data['count_approved_dh'] = count($data_approved_dh);
+		$data['count_process_np'] = count($data_process_np);
+		$data['count_process_op'] = count($data_process_op);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
