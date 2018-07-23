@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2018 at 10:32 AM
+-- Generation Time: Jul 23, 2018 at 06:51 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -61,6 +61,7 @@ INSERT INTO `account` (`id_account`, `email`, `password`, `Jabatan`, `id_jabatan
 
 CREATE TABLE `form` (
   `noticket` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `dari` varchar(50) NOT NULL,
   `e_mail` varchar(50) NOT NULL,
   `untuk` varchar(20) NOT NULL,
@@ -79,11 +80,12 @@ CREATE TABLE `form` (
 -- Dumping data for table `form`
 --
 
-INSERT INTO `form` (`noticket`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(159, 'Rizal (HR)', 'khairulrizal39@gmail.com', 'ICT', '2018-07-18', 'Data Communication / Internet', 'Problem Solving', '2018-07-18', 'yes', 'immedietly', 'tidak bisa masuk server untuk lihat datathx', 'Approved by A. Manager', 'Done'),
-(165, 'Doni (HR)', 'viceheadexternal@gmail.com', 'ICT', '2018-07-18', 'Data Communication / Internet', 'Problem Solving', '2018-07-18', 'yes', 'immedietly', 'Tidak bisa konek internet mohon bantuannya terimakasih', 'Approved by A. Manager', 'Done'),
-(166, 'Samuel Arthur (HR)', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-18', 'LAN / WAN / Communication', 'Problem Solving', '2018-07-18', 'yes', 'normal', 'untuk masuk ke sistem sangat lambat tolong di cek thx', 'Approved by Dept. Head', 'Done'),
-(167, 'Elkaf Fahrezi (HR)', 'fahrezi182@gmail.com', 'SWD', '2018-07-18', 'Software Package', 'Installation', '2018-07-18', 'no', 'immedietly', 'Word saya eror tolong dilihat dan diperbaiki thx', 'Approved by Dept. Head', 'Done');
+INSERT INTO `form` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
+(1, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'tinta printer HR habis tolong diganti thx', 'Approved by A. Manager', 'Not Processed'),
+(2, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'SWD', '2018-07-23', 'System Application', 'Additional / Change / Delete', '2018-08-23', 'yes', 'normal', 'untuk merekap data karyawan yang baru', 'Approved by Dept. Head', 'On Process'),
+(4, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Software Package', 'Installation', '2018-07-23', 'no', 'immedietly', 'word 2013 error tolong di install ulang dengan lisensi thx', 'Pending', 'Not Processed'),
+(5, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'SWD', '2018-07-23', 'System Application', 'Additional / Change / Delete', '2018-08-20', 'yes', 'normal', 'untuk merubah data penjualan dari datababase ke excel dan pdf thx', 'Approved by Dept. Head', 'On Process'),
+(6, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Additional / Change / Delete', '0000-00-00', 'no', 'immedietly', 'catridge rusak soalnya kalau ngeprint ada garis dan ada bocor sedikit', 'Pending', 'Not Processed');
 
 -- --------------------------------------------------------
 
@@ -93,6 +95,7 @@ INSERT INTO `form` (`noticket`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `dut
 
 CREATE TABLE `form_done` (
   `noticket` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `dari` varchar(50) NOT NULL,
   `e_mail` varchar(50) NOT NULL,
   `untuk` varchar(20) NOT NULL,
@@ -111,10 +114,31 @@ CREATE TABLE `form_done` (
 -- Dumping data for table `form_done`
 --
 
-INSERT INTO `form_done` (`noticket`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(169, 'Josua Fernando (F&A)', 'indoprydee@gmail.com', 'ICT', '2018-07-19', 'Hardware', 'Service / Repair', '2018-07-19', 'no', 'immedietly', 'Printer rusak tolong diservice dan diganti sementara dulu thx', 'Approved by Dept. Head', 'Done'),
-(170, 'Helena Desembra (F&A)', 'helena.desembra@gmail.com', 'SWD', '2018-07-19', 'System Application', 'Additional / Change / Delete', '2018-08-19', 'yes', 'normal', 'tolong buatkan program untuk bisa ubah data excel jadi pdf thx', 'Approved by A. Manager', 'Done'),
-(171, 'Ananda Fitri (F&A)', 'anandafn8@gmail.com', 'ICT', '2018-07-19', 'Data Communication / Internet', 'Problem Solving', '2018-07-19', 'yes', 'immedietly', 'disini tertulis connected, tapi tak bisa masuk server, tolong dibantu thx', 'Approved by Dept. Head', 'Done');
+INSERT INTO `form_done` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
+(3, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Hardware', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'UPS tidak nyala tolong diganti thx', 'Approved by Dept. Head', 'Done');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `form_na`
+--
+
+CREATE TABLE `form_na` (
+  `noticket` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `dari` varchar(50) NOT NULL,
+  `e_mail` varchar(50) NOT NULL,
+  `untuk` varchar(20) NOT NULL,
+  `date` date NOT NULL,
+  `kasus` varchar(50) NOT NULL,
+  `duty` varchar(50) NOT NULL,
+  `dateoec` date NOT NULL,
+  `systemint` varchar(300) NOT NULL,
+  `urgency` varchar(10) NOT NULL,
+  `description` varchar(300) NOT NULL,
+  `approvalstatus` varchar(50) NOT NULL,
+  `process` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -139,6 +163,12 @@ ALTER TABLE `form_done`
   ADD PRIMARY KEY (`noticket`);
 
 --
+-- Indexes for table `form_na`
+--
+ALTER TABLE `form_na`
+  ADD PRIMARY KEY (`noticket`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -146,13 +176,13 @@ ALTER TABLE `form_done`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,7 +5,16 @@
       <input type="text" placeholder="your ticket number here ..." name="search">
       <input type="submit" value="Search">
     </form>
-  </div><br><br><br>
+  </div><br><br>
+<a>SORT DATA BY</a>
+<li ><a href="<?php echo base_url("web/home_sort_urgency_normal");?>">Urgency Normal</a> </li>
+<li><a href="<?php echo base_url("web/home_sort_urgency_immedietly");?>">Urgency Immedietly</a> </li>
+<li><a href="<?php echo base_url("web/home_sort_approved_pending");?>">Approved Pending</a> </li>
+<li><a href="<?php echo base_url("web/home_sort_approved_asm");?>">Approved by A. Manager</a> </li>
+<li><a href="<?php echo base_url("web/home_sort_approved_dh");?>">Approved by Dept. Head</a> </li>
+<li><a href="<?php echo base_url("web/home_sort_process_np");?>">Not Processed</a> </li>
+<li><a href="<?php echo base_url("web/home_sort_process_op");?>">On Process</a> </li>
+  <br><br>
   <style>
 	table {
     	border-collapse: collapse;
@@ -27,6 +36,7 @@
 	<table>
   	  <tr>
     	  <th>No. Ticket</th>
+        <th>Name</th>
     	  <th>From</th>
     	  <th>To</th>
     	  <th>Date</th>
@@ -43,6 +53,7 @@
 		foreach($form as $f){
 			echo "<tr>";
 			echo "<td>". $f->noticket."</td>";
+      echo "<td>". $f->nama."</td>";
 			echo "<td>". $f->dari."</td>";
 			echo "<td>". $f->untuk."</td>";
 			echo "<td>".$f->date."</td>";

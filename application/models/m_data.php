@@ -5,8 +5,17 @@ class M_data extends CI_Model{
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 	}
+
 	function tampil_data(){
 		return $this->db->get('form');
+	}
+
+	function tampil_data_HRD(){
+		return $this->db->query("select * from form where dari LIKE 'HRD'");
+	}
+
+	function tampil_data_FA(){
+		return $this->db->query("select * from form where dari LIKE 'Financial & Accounting'");
 	}
 
 	function tampil_data_done(){
@@ -64,5 +73,47 @@ class M_data extends CI_Model{
     	}
     	$this->db->where($where);
     	$this->db->delete('form');
+	}
+
+	function pindah_table_na($where,$data,$table){
+		$this->db->where($where);
+		$q = $this->db->get('form')->result();
+		foreach ($q as $r) { // loop over results
+        	$this->db->insert('form_na', $r); // insert each row to country table
+    	}
+    	$this->db->where($where);
+    	$this->db->delete('form');
+	}
+
+	function sort_data_approved_dh(){
+		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by Dept. Head'");
+	}
+
+	/*function count_sort_data_approved_dh(){
+		return $this->db->query("select count(approvalstatus) FROM form WHERE approvalstatus LIKE 'Approved by Dept. Head'");
+	}*/
+
+	function sort_data_approved_asm(){
+		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by A. Manager'");
+	}
+
+	function sort_data_approved_pending(){
+		return $this->db->query("select * from form where approvalstatus LIKE 'Pending'");
+	}
+
+	function sort_data_urgency_normal(){
+		return $this->db->query("select * from form where urgency LIKE 'normal'");
+	}
+
+	function sort_data_urgency_immedietly(){
+		return $this->db->query("select * from form where urgency LIKE 'immedietly'");
+	}
+
+	function sort_data_process_np(){
+		return $this->db->query("select * from form where process LIKE 'Not Processed'");
+	}
+
+	function sort_data_process_op(){
+		return $this->db->query("select * from form where process LIKE 'On Process'");
 	}
 }

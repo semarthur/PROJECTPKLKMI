@@ -11,6 +11,7 @@ class Crud extends CI_Controller{
 	}
 	
 	function form_tambah(){
+		$nama = $this->input->post('name');
 		$dari = $this->input->post('from');
 		$e_mail = $this->input->post('e_mail');
 		$untuk = $this->input->post('to');
@@ -23,6 +24,7 @@ class Crud extends CI_Controller{
 		$description = $this->input->post('description');
 
 		$data = array(
+			'nama' => $nama,
 			'dari' => $dari,
 			'e_mail' => $e_mail,
 			'untuk' => $untuk,
@@ -75,6 +77,7 @@ class Crud extends CI_Controller{
 	}
 
 	function form_tambah_requester(){
+		$nama = $this->input->post('name');
 		$dari = $this->input->post('from');
 		$e_mail = $this->input->post('e_mail');
 		$untuk = $this->input->post('to');
@@ -87,6 +90,7 @@ class Crud extends CI_Controller{
 		$description = $this->input->post('description');
 
 		$data = array(
+			'nama' => $nama,
 			'dari' => $dari,
 			'e_mail' => $e_mail,
 			'untuk' => $untuk,
@@ -189,6 +193,7 @@ class Crud extends CI_Controller{
 	}
 
 	function form_tambah_req_asm(){
+		$nama = $this->input->post('name');
 		$dari = $this->input->post('from');
 		$e_mail = $this->input->post('e_mail');
 		$untuk = $this->input->post('to');
@@ -201,6 +206,7 @@ class Crud extends CI_Controller{
 		$description = $this->input->post('description');
 
 		$data = array(
+			'nama' => $nama,
 			'dari' => $dari,
 			'e_mail' => $e_mail,
 			'untuk' => $untuk,
@@ -250,6 +256,7 @@ class Crud extends CI_Controller{
 	}
 
 	function form_tambah_req_dh(){
+		$nama = $this->input->post('name');
 		$dari = $this->input->post('from');
 		$e_mail = $this->input->post('e_mail');
 		$untuk = $this->input->post('to');
@@ -262,6 +269,7 @@ class Crud extends CI_Controller{
 		$description = $this->input->post('description');
 
 		$data = array(
+			'nama' => $nama,
 			'dari' => $dari,
 			'e_mail' => $e_mail,
 			'untuk' => $untuk,
@@ -318,6 +326,7 @@ class Crud extends CI_Controller{
 
 	function form_update_process(){
 		$noticket = $this->input->post('noticket');
+		$nama = $this->input->post('name');
 		$dari = $this->input->post('from');
 		$e_mail = $this->input->post('e_mail');
 		$untuk = $this->input->post('to');
@@ -332,6 +341,7 @@ class Crud extends CI_Controller{
 
 		$data = array(
 			'noticket' => $noticket,
+			'nama' => $nama,
 			'dari' => $dari,
 			'e_mail' => $e_mail,
 			'untuk' => $untuk,
@@ -481,6 +491,7 @@ class Crud extends CI_Controller{
 
 	function form_update_approval(){
 		$noticket = $this->input->post('noticket');
+		$nama = $this->input->post('name');
 		$dari = $this->input->post('from');
 		$e_mail = $this->input->post('e_mail');
 		$untuk = $this->input->post('to');
@@ -495,6 +506,7 @@ class Crud extends CI_Controller{
 
 		$data = array(
 			'noticket' => $noticket,
+			'nama' => $nama,
 			'dari' => $dari,
 			'e_mail' => $e_mail,
 			'untuk' => $untuk,
@@ -613,13 +625,14 @@ class Crud extends CI_Controller{
 			$this->email->initialize($config);
 
 			$this->email->set_newline("\r\n");
-			$this->email->from('catur.hutabarat@gmail.com', 'Requisition Form Not Approved');
+			$this->email->from('catur.hutabarat@gmail.com', 'Kawasaki RFS');
 			$this->email->to($e_mail);
 			$this->email->subject('Requisition Form Not Approved');
 			$this->email->message('Your Requisition Form is not Approved.
 								   Your ticket number : '.$noticket);
 
 			if($this->email->send()){
+				$this->m_data->pindah_table_na($where,$data,'form');
 				redirect('web/home_req_asm');
 			} else {
 				show_error($this->email->print_debugger());
@@ -629,6 +642,7 @@ class Crud extends CI_Controller{
 
 	function form_update_approval_dh(){
 		$noticket = $this->input->post('noticket');
+		$nama = $this->input->post('name');
 		$dari = $this->input->post('from');
 		$e_mail = $this->input->post('e_mail');
 		$untuk = $this->input->post('to');
@@ -643,6 +657,7 @@ class Crud extends CI_Controller{
 
 		$data = array(
 			'noticket' => $noticket,
+			'nama' => $nama,
 			'dari' => $dari,
 			'e_mail' => $e_mail,
 			'untuk' => $untuk,
@@ -753,6 +768,7 @@ class Crud extends CI_Controller{
 								   Your ticket number : '.$noticket);
 
 			if($this->email->send()){
+				$this->m_data->pindah_table_na($where,$data,'form');
 				redirect('web/home_req_dh');
 			} else {
 				show_error($this->email->print_debugger());

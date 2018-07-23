@@ -21,6 +21,63 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer',$data);
 	}
 
+	public function home_sort_urgency_normal(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header',$data);
+		$data['form'] = $this->m_data->sort_data_urgency_normal()->result();	
+		$this->load->view('view_status',$data);
+		$this->load->view('v_footer',$data);
+	}
+
+	public function home_sort_urgency_immedietly(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header',$data);
+		$data['form'] = $this->m_data->sort_data_urgency_immedietly()->result();	
+		$this->load->view('view_status',$data);
+		$this->load->view('v_footer',$data);
+	}
+
+
+	public function home_sort_approved_pending(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header',$data);
+		$data['form'] = $this->m_data->sort_data_approved_pending()->result();	
+		$this->load->view('view_status',$data);
+		$this->load->view('v_footer',$data);
+	}
+
+	public function home_sort_approved_asm(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header',$data);
+		$data['form'] = $this->m_data->sort_data_approved_asm()->result();
+		$this->load->view('view_status',$data);
+		$this->load->view('v_footer',$data);
+	}
+
+	public function home_sort_approved_dh(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header',$data);
+		$data['form'] = $this->m_data->sort_data_approved_dh()->result();	
+		$this->load->view('view_status',$data);
+		$this->load->view('v_footer',$data);
+	}
+
+	public function home_sort_process_np(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header',$data);
+		$data['form'] = $this->m_data->sort_data_process_np()->result();	
+		$this->load->view('view_status',$data);
+		$this->load->view('v_footer',$data);
+	}
+
+	public function home_sort_process_op(){		
+		$data['judul'] = "Status Check";
+		$this->load->view('v_header',$data);
+		$data['form'] = $this->m_data->sort_data_process_op()->result();	
+		$this->load->view('view_status',$data);
+		$this->load->view('v_footer',$data);
+	}
+
 	public function home_requester(){		
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header_requester',$data);
@@ -35,6 +92,22 @@ class Web extends CI_Controller {
 		$data['form'] = $this->m_data->tampil_data()->result();
 		$this->load->view('view_status_asm',$data);
 		$this->load->view('v_footer_asm',$data);
+	}
+
+	public function home_req_asm_tampil_data_departemen(){	
+		$email = $this->session->userdata('email');
+		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
+		$departemen_sekarang = $temp[0]->Departemen;
+
+		if ($departemen_sekarang == "HRD"){
+			$data['judul'] = "Status Check";
+			$this->load->view('v_header_asm',$data);
+			$data['form'] = $this->m_data->tampil_data_HRD()->result();
+			$this->load->view('view_status_asm',$data);
+			$this->load->view('v_footer_asm',$data);
+		}else{
+			echo "gagal maning";
+		}
 	}
 
 	public function home_req_dh(){		

@@ -5,7 +5,10 @@
       <input type="text" placeholder="your ticket number here ..." name="search">
       <input type="submit" value="Search">
     </form>
-  </div><br><br><br>
+  </div><br><br>
+  <a>SORT DATA BY</a>
+<li ><a href="<?php echo base_url("web/home_req_asm_tampil_data_departemen");?>">Your Departement</a> </li>
+<br><br>
   <style>
 	table {
     	border-collapse: collapse;
@@ -27,6 +30,7 @@
 	<table>
   	  <tr>
     	  <th>No. Ticket</th>
+        <th>Name</th>
     	  <th>From</th>
     	  <th>To</th>
     	  <th>Date</th>
@@ -43,6 +47,7 @@
 		foreach($form as $f){
 			echo "<tr>";
 			echo "<td>". $f->noticket."</td>";
+      echo "<td>". $f->nama."</td>";
 			echo "<td>". $f->dari."</td>";
 			echo "<td>". $f->untuk."</td>";
 			echo "<td>".$f->date."</td>";

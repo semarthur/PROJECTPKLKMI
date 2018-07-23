@@ -89,6 +89,17 @@ input[type=submit]:hover {
     </div>
     <div class="row">
       <div class="col-25">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-25">
+        <input type="text" value="<?php
+          foreach($form as $f){
+            echo $f->nama;
+        }?>" name="name" readonly>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
         <label for="from">From</label>
       </div>
       <div class="col-25">

@@ -71,10 +71,25 @@ input[type=submit]:hover {
   <form action="<?php echo base_url(). 'crud/form_tambah_req_asm'; ?>" method="POST">
     <div class="row">
       <div class="col-25">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-25">
+        <input type="text" id="name" name="name" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
         <label for="from">From</label>
       </div>
       <div class="col-25">
-        <input type="text" id="from" name="from" >
+        <select id="from" name="from">
+          <option value=""></option>
+          <option value="Financial & Accounting">Financial & Accounting</option>
+          <option value="HRD">HRD</option>
+          <option value="PR">PR</option>
+          <option value="Information System">Information System</option>
+          <option value="Production">Production</option>
+        </select>
       </div>
     </div>
     <div class="row">

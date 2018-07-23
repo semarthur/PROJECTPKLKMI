@@ -27,6 +27,7 @@
 	<table>
   	  <tr>
     	  <th>No. Ticket</th>
+        <th>Name</th>
     	  <th>From</th>
     	  <th>To</th>
     	  <th>Date</th>
@@ -43,6 +44,7 @@
 		foreach($form_done as $fd){
 			echo "<tr>";
 			echo "<td>". $fd->noticket."</td>";
+      echo "<td>". $fd->nama."</td>";
 			echo "<td>". $fd->dari."</td>";
 			echo "<td>". $fd->untuk."</td>";
 			echo "<td>".$fd->date."</td>";
