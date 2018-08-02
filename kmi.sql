@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2018 at 06:51 AM
+-- Generation Time: Aug 02, 2018 at 10:03 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -34,7 +34,7 @@ CREATE TABLE `account` (
   `password` varchar(16) NOT NULL,
   `Jabatan` enum('Staff','Assistant Manager','Dept Head','') NOT NULL,
   `id_jabatan` int(1) NOT NULL,
-  `Departemen` enum('Financial & Acconting','HRD','PR','Information System','Production') NOT NULL
+  `Departemen` enum('Financial & Accounting','HRD','PR','Information System','Production') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -49,9 +49,9 @@ INSERT INTO `account` (`id_account`, `email`, `password`, `Jabatan`, `id_jabatan
 (5, 'requester5@gmail.com', 'qwepoi', 'Assistant Manager', 2, 'Information System'),
 (6, 'requester6@gmail.com', 'qwepoi', 'Dept Head', 3, 'Information System'),
 (7, 'semarthur@student.ub.ac.id', 'qwepoi', 'Staff', 1, 'HRD'),
-(8, 'indoprydee@gmail.com', 'qwepoi', 'Staff', 1, 'Financial & Acconting'),
-(9, 'helena.desembra@gmail.com', 'qwepoi', 'Assistant Manager', 2, 'Financial & Acconting'),
-(10, 'anandafn8@gmail.com', 'qwepoi', 'Dept Head', 3, 'Financial & Acconting');
+(8, 'indoprydee@gmail.com', 'qwepoi', 'Staff', 1, 'Financial & Accounting'),
+(9, 'helena.desembra@gmail.com', 'qwepoi', 'Assistant Manager', 2, 'Financial & Accounting'),
+(10, 'anandafn8@gmail.com', 'qwepoi', 'Dept Head', 3, 'Financial & Accounting');
 
 -- --------------------------------------------------------
 
@@ -81,11 +81,11 @@ CREATE TABLE `form` (
 --
 
 INSERT INTO `form` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(1, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'tinta printer HR habis tolong diganti thx', 'Approved by A. Manager', 'Not Processed'),
 (2, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'SWD', '2018-07-23', 'System Application', 'Additional / Change / Delete', '2018-08-23', 'yes', 'normal', 'untuk merekap data karyawan yang baru', 'Approved by Dept. Head', 'On Process'),
 (4, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Software Package', 'Installation', '2018-07-23', 'no', 'immedietly', 'word 2013 error tolong di install ulang dengan lisensi thx', 'Pending', 'Not Processed'),
 (5, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'SWD', '2018-07-23', 'System Application', 'Additional / Change / Delete', '2018-08-20', 'yes', 'normal', 'untuk merubah data penjualan dari datababase ke excel dan pdf thx', 'Approved by Dept. Head', 'On Process'),
-(6, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Additional / Change / Delete', '0000-00-00', 'no', 'immedietly', 'catridge rusak soalnya kalau ngeprint ada garis dan ada bocor sedikit', 'Pending', 'Not Processed');
+(6, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Additional / Change / Delete', '0000-00-00', 'no', 'immedietly', 'catridge rusak soalnya kalau ngeprint ada garis dan ada bocor sedikit', 'Pending', 'Not Processed'),
+(7, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-26', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-07-26', 'no', 'immedietly', 'habis tolong diganti thx', 'Pending', 'Not Processed');
 
 -- --------------------------------------------------------
 
@@ -115,6 +115,7 @@ CREATE TABLE `form_done` (
 --
 
 INSERT INTO `form_done` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
+(1, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'tinta printer HR habis tolong diganti thx', 'Approved by Dept. Head', 'Done'),
 (3, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Hardware', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'UPS tidak nyala tolong diganti thx', 'Approved by Dept. Head', 'Done');
 
 -- --------------------------------------------------------
@@ -182,7 +183,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

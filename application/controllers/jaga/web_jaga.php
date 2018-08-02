@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Web extends CI_Controller {
 	
@@ -16,7 +18,6 @@ class Web extends CI_Controller {
 	public function home(){		
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header',$data);
-		$data['form'] = $this->m_data->tampil_data()->result();
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
 	}
@@ -171,7 +172,18 @@ class Web extends CI_Controller {
 	public function home_requester(){		
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header_requester',$data);
-		$data['form'] = $this->m_data->tampil_data()->result();
+		$email = $this->session->userdata('email');
+		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
+		$departemen_sekarang = $temp[0]->Departemen;
+
+			if ($departemen_sekarang == "HRD"){
+				$data['form'] = $this->m_data->tampil_data_HRD()->result();
+			}else if($departemen_sekarang == "Financial & Accounting"){
+				$data['form'] = $this->m_data->tampil_data_FA()->result();
+			}else{
+				echo "404";
+			}
+
 		$this->load->view('view_status_req',$data);
 		$this->load->view('v_footer_requester',$data);
 	}
@@ -656,21 +668,153 @@ class Web extends CI_Controller {
 			}else{
 				redirect('web/index');
 			}
-		}else{
+		}else{	
 			echo "KAMU TIDAK TERDAFTAR";
 		}
 	}
 
-	function search(){ 
-		$noticket = (int)$this->input->get('noticket');
-		$name = $this->input->get('name');
-		$from = $this->input->get('from');
-		$case = $this->input->get('case');
-		$temp = $this->m_data->searchbox($noticket,$name,$from,$case)->result();
-		$data['judul'] = "Status Check";
-		$this->load->view('v_header',$data);
-		$this->load->view('view_status',$data);
-		$this->load->view('v_footer',$data);
+	function fetch_home(){
+		$output = '';
+  		$query = '';
+  		if($this->input->post('query')){
+   			$query = $this->input->post('query');
+  		}
+  		$data = $this->m_data->fetch_data_search($query);
+  		$output .= '
+  			<style>
+  			table {
+      			border-collapse: collapse;
+      			width: 100%;
+  			}
+
+    		th, td {
+      			text-align: left;
+      			padding: 8px;
+  			}
+
+  			tr:nth-child(even){background-color: #f2f2f2}
+
+  			th {
+      			background-color: #4CAF50;
+      			color: white;
+  			}
+  			</style>
+  			<table>
+      			<tr>
+      			  <th>No. Ticket</th>
+      			  <th>Name</th>
+      			  <th>From</th>
+      			  <th>To</th>
+      			  <th>Date</th>
+      			  <th>Case</th>
+      			  <th>Duty</th>
+      			  <th>Date of Expectancy Completion</th>
+      			  <th>System Integrated</th>
+      			  <th>Urgency</th>
+      			  <th>Description</th>
+      			  <th>Approval Status</th>
+      			  <th>Status</th>
+      			</tr>
+  		';
+  		if($data->num_rows() > 0){
+   			foreach($data->result() as $row){
+    			$output .= '
+      					<tr>
+      					 <td>'.$row->noticket.'</td>
+      					 <td>'.$row->nama.'</td>
+      					 <td>'.$row->dari.'</td>
+      					 <td>'.$row->untuk.'</td>
+      					 <td>'.$row->date.'</td>
+      					 <td>'.$row->kasus.'</td>
+      					 <td>'.$row->duty.'</td>
+      					 <td>'.$row->dateoec.'</td>
+      					 <td>'.$row->systemint.'</td>
+      					 <td>'.$row->urgency.'</td>
+      					 <td>'.$row->description.'</td>
+      					 <td>'.$row->approvalstatus.'</td>
+      					 <td>'.$row->process.'</td>
+      					</tr>
+    			';
+   			}
+  		}else{
+   			$output .= '<tr>
+       			<td colspan="13">No Data Found</td>
+      		</tr>';
+  		}
+  		$output .= '</table>';
+  		echo $output;
+	}
+
+	function fetch_home_specify(){
+		$output = '';
+  		$query = '';
+  		if($this->input->post('query')){
+   			$query = $this->input->post('query');
+  		}
+  		$data = $this->m_data->fetch_data_search_specify($query);
+  		$output .= '
+  			<style>
+  			table {
+      			border-collapse: collapse;
+      			width: 100%;
+  			}
+
+    		th, td {
+      			text-align: left;
+      			padding: 8px;
+  			}
+
+  			tr:nth-child(even){background-color: #f2f2f2}
+
+  			th {
+      			background-color: #4CAF50;
+      			color: white;
+  			}
+  			</style>
+  			<table>
+      			<tr>
+      			  <th>No. Ticket</th>
+      			  <th>Name</th>
+      			  <th>From</th>
+      			  <th>To</th>
+      			  <th>Date</th>
+      			  <th>Case</th>
+      			  <th>Duty</th>
+      			  <th>Date of Expectancy Completion</th>
+      			  <th>System Integrated</th>
+      			  <th>Urgency</th>
+      			  <th>Description</th>
+      			  <th>Approval Status</th>
+      			  <th>Status</th>
+      			</tr>
+  		';
+  		if($data->num_rows() > 0){
+   			foreach($data->result() as $row){
+    			$output .= '
+      					<tr>
+      					 <td>'.$row->noticket.'</td>
+      					 <td>'.$row->nama.'</td>
+      					 <td>'.$row->dari.'</td>
+      					 <td>'.$row->untuk.'</td>
+      					 <td>'.$row->date.'</td>
+      					 <td>'.$row->kasus.'</td>
+      					 <td>'.$row->duty.'</td>
+      					 <td>'.$row->dateoec.'</td>
+      					 <td>'.$row->systemint.'</td>
+      					 <td>'.$row->urgency.'</td>
+      					 <td>'.$row->description.'</td>
+      					 <td>'.$row->approvalstatus.'</td>
+      					 <td>'.$row->process.'</td>
+      					</tr>
+    			';
+   			}
+  		}else{
+   			$output .= '<tr>
+       			<td colspan="13">No Data Found</td>
+      		</tr>';
+  		}
+  		$output .= '</table>';
+  		echo $output;
 	}
 
 	function search_req(){ 

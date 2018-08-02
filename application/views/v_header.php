@@ -1,8 +1,10 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>PT. KMI</title>	
+	<title>PT. KMI</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/style.css">
 </head>
 <body>

@@ -5,9 +5,24 @@
       <input type="text" placeholder="your ticket number here ..." name="search">
       <input type="submit" value="Search">
     </form>
-  </div><br><br>
-  <a>SORT DATA BY</a>
-<li ><a href="<?php echo base_url("web/home_req_asm_tampil_data_departemen");?>">Your Departement</a> </li>
+</div><br><br>
+<a>SORT DATA BY</a>
+<form action="<?php echo base_url(). 'web/home_sort_asm'; ?>" method="get">
+<select id="sort" name="sort">
+  <option value="">choose here</option>
+  <option value="Your Departement">Your Departement</option>
+  <option value="Approval Pending">Approval Pending</option>
+  <option value="Approved by You">Approved by You</option>
+  <option value="Approved by Dept. Head">Approved by Dept. Head</option>
+</select>
+<input type="submit" value="Go">
+</form>
+<br><br>
+<a>Count Status :</a>
+<li><a>Your Departement : <?php echo $count_your_departement ?></a> </li>
+<li><a>Approval Pending : <?php echo $count_approval_pending ?></a> </li>
+<li><a>Approved by You : <?php echo $count_approved_asm ?></a> </li>
+<li><a>Approved by Dept. Head : <?php echo $count_approved_dh ?></a> </li>
 <br><br>
   <style>
 	table {
