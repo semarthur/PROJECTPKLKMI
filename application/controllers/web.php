@@ -666,8 +666,10 @@ class Web extends CI_Controller {
 		$name = $this->input->get('name');
 		$from = $this->input->get('from');
 		$case = $this->input->get('case');
-		$temp = $this->m_data->searchbox($noticket,$name,$from,$case)->result();
+		$data['form'] = $this->m_data->searchbox($noticket,$name,$from,$case)->result();
 		$data['judul'] = "Status Check";
+		//var_dump($data['form']);
+		//var_dump($noticket);
 		$this->load->view('v_header',$data);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);

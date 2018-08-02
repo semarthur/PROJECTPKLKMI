@@ -33,19 +33,27 @@ class M_data extends CI_Model{
 		$this->db->from("form");
 		if($search != ''){
 			$this->db->like('noticket', $search);
-   			$this->db->or_like('nama', $search);
-   			$this->db->or_like('dari', $search);
-   			$this->db->or_like('kasus', $search);
+			$this->db->or_like('nama', $search);
+			$this->db->or_like('dari', $search);
+			$this->db->or_like('kasus', $search);
 		}
 		return $this->db->get();
 	}
 
 	function searchbox($noticket,$name,$from,$case){
-		$this->db->where('noticket',$noticket);
-		$this->db->like('nama',$name);
-		$this->db->like('dari',$from);
-		$this->db->like('kasus',$case);
-		return $this->db->get('form');
+		if($noticket != 0){
+			$this->db->where('noticket',$noticket);
+			$this->db->like('nama',$name);
+			$this->db->like('dari',$from);
+			$this->db->like('kasus',$case);
+			return $this->db->get('form');
+		} else {
+			$this->db->like('nama',$name);
+			$this->db->like('dari',$from);
+			$this->db->like('kasus',$case);
+			return $this->db->get('form');
+		}
+		
 	}
 
 	function search_ticket($search){
@@ -57,7 +65,7 @@ class M_data extends CI_Model{
 	}
 
 	function edit_status($where,$table){		
-	return $this->db->get_where($table,$where);
+		return $this->db->get_where($table,$where);
 	}
 
 	function update_status($where,$data,$table){
@@ -89,20 +97,20 @@ class M_data extends CI_Model{
 		$this->db->where($where);
 		$q = $this->db->get('form')->result();
 		foreach ($q as $r) { 
-        	$this->db->insert('form_done', $r); 
-    	}
-    	$this->db->where($where);
-    	$this->db->delete('form');
+			$this->db->insert('form_done', $r); 
+		}
+		$this->db->where($where);
+		$this->db->delete('form');
 	}
 
 	function pindah_table_na($where,$data,$table){
 		$this->db->where($where);
 		$q = $this->db->get('form')->result();
 		foreach ($q as $r) { 
-        	$this->db->insert('form_na', $r);
-    	}
-    	$this->db->where($where);
-    	$this->db->delete('form');
+			$this->db->insert('form_na', $r);
+		}
+		$this->db->where($where);
+		$this->db->delete('form');
 	}
 
 	function sort_data_approved_dh(){

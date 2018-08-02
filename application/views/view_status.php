@@ -94,10 +94,10 @@ input[type=submit]:hover {
         <label for="No. Ticket">No. Ticket</label>
       </div>
       <div class="col-75">
-        <input type="text" value="" name="noticket" >
+        <input type="text" name="noticket" >
       </div>
       <div class="col-85">
-        <input type="text" value="" name="from" >
+        <input type="text" name="from" >
       </div>
       <div class="col-35">
         <label for="from">From</label>
@@ -108,7 +108,7 @@ input[type=submit]:hover {
         <label for="name">Name</label>
       </div>
       <div class="col-75">
-        <input type="text" value="" name="name" >
+        <input type="text" name="name" >
       </div>
       <div class="col-85">
         <select id="case" name="case" >
