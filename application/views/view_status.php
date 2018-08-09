@@ -148,7 +148,7 @@ input[type=submit]:hover {
       <input type="submit" value="Search">
     </div>
     <div class="row">
-      <a href="<?php echo base_url('web/download') ?>" class="btn">Download</a>
+      <a href="<?php echo base_url('web/export') ?>" class="btn">Download</a>
     </div>
     </form>
   </div><br><br><br>
