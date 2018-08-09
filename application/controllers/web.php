@@ -21,157 +21,22 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer',$data);
 	}
 
-	public function home_sort(){
-		$sort = $this->input->get('sort');
-		if($sort == "Urgency Normal"){
-			$data['judul'] = "Status Check";
-			$this->load->view('v_header',$data);
-			$data['form'] = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
-			$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
-			$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
-			$data_process_np = $this->m_data->sort_data_process_np()->result();
-			$data_process_op = $this->m_data->sort_data_process_op()->result();
-			$data['count_urgency_normal'] = count($data_urgency_normal);
-			$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
-			$data['count_approved_pending'] = count($data_approved_pending);
-			$data['count_approved_asm'] = count($data_approved_asm);
-			$data['count_approved_dh'] = count($data_approved_dh);
-			$data['count_process_np'] = count($data_process_np);
-			$data['count_process_op'] = count($data_process_op);
-			$this->load->view('view_status',$data);
-			$this->load->view('v_footer',$data);
-		}else if($sort == "Urgency Immedietly"){
-			$data['judul'] = "Status Check";
-			$this->load->view('v_header',$data);
-			$data['form'] = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
-			$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
-			$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
-			$data_process_np = $this->m_data->sort_data_process_np()->result();
-			$data_process_op = $this->m_data->sort_data_process_op()->result();
-			$data['count_urgency_normal'] = count($data_urgency_normal);
-			$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
-			$data['count_approved_pending'] = count($data_approved_pending);
-			$data['count_approved_asm'] = count($data_approved_asm);
-			$data['count_approved_dh'] = count($data_approved_dh);
-			$data['count_process_np'] = count($data_process_np);
-			$data['count_process_op'] = count($data_process_op);	
-			$this->load->view('view_status',$data);
-			$this->load->view('v_footer',$data);
-		}else if ($sort == "Approved Pending"){
-			$data['judul'] = "Status Check";
-			$this->load->view('v_header',$data);
-			$data['form'] = $this->m_data->sort_data_approved_pending()->result();
-			$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
-			$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
-			$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
-			$data_process_np = $this->m_data->sort_data_process_np()->result();
-			$data_process_op = $this->m_data->sort_data_process_op()->result();
-			$data['count_urgency_normal'] = count($data_urgency_normal);
-			$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
-			$data['count_approved_pending'] = count($data_approved_pending);
-			$data['count_approved_asm'] = count($data_approved_asm);
-			$data['count_approved_dh'] = count($data_approved_dh);
-			$data['count_process_np'] = count($data_process_np);
-			$data['count_process_op'] = count($data_process_op);
-			$this->load->view('view_status',$data);
-			$this->load->view('v_footer',$data);
-		}else if($sort == "Approved by A. Manager"){
-			$data['judul'] = "Status Check";
-			$this->load->view('v_header',$data);
-			$data['form'] = $this->m_data->sort_data_approved_asm()->result();
-			$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
-			$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
-			$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
-			$data_process_np = $this->m_data->sort_data_process_np()->result();
-			$data_process_op = $this->m_data->sort_data_process_op()->result();
-			$data['count_urgency_normal'] = count($data_urgency_normal);
-			$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
-			$data['count_approved_pending'] = count($data_approved_pending);
-			$data['count_approved_asm'] = count($data_approved_asm);
-			$data['count_approved_dh'] = count($data_approved_dh);
-			$data['count_process_np'] = count($data_process_np);
-			$data['count_process_op'] = count($data_process_op);
-			$this->load->view('view_status',$data);
-			$this->load->view('v_footer',$data);
-		}else if($sort == "Approved by Dept. Head"){
-			$data['judul'] = "Status Check";
-			$this->load->view('v_header',$data);
-			$data['form'] = $this->m_data->sort_data_approved_dh()->result();
-			$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
-			$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
-			$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
-			$data_process_np = $this->m_data->sort_data_process_np()->result();
-			$data_process_op = $this->m_data->sort_data_process_op()->result();
-			$data['count_urgency_normal'] = count($data_urgency_normal);
-			$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
-			$data['count_approved_pending'] = count($data_approved_pending);
-			$data['count_approved_asm'] = count($data_approved_asm);
-			$data['count_approved_dh'] = count($data_approved_dh);
-			$data['count_process_np'] = count($data_process_np);
-			$data['count_process_op'] = count($data_process_op);
-			$this->load->view('view_status',$data);
-			$this->load->view('v_footer',$data);
-		}else if($sort == "Not Processed"){
-			$data['judul'] = "Status Check";
-			$this->load->view('v_header',$data);
-			$data['form'] = $this->m_data->sort_data_process_np()->result();
-			$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
-			$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
-			$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
-			$data_process_np = $this->m_data->sort_data_process_np()->result();
-			$data_process_op = $this->m_data->sort_data_process_op()->result();
-			$data['count_urgency_normal'] = count($data_urgency_normal);
-			$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
-			$data['count_approved_pending'] = count($data_approved_pending);
-			$data['count_approved_asm'] = count($data_approved_asm);
-			$data['count_approved_dh'] = count($data_approved_dh);
-			$data['count_process_np'] = count($data_process_np);
-			$data['count_process_op'] = count($data_process_op);
-			$this->load->view('view_status',$data);
-			$this->load->view('v_footer',$data);
-		}else if($sort == "On Process"){
-			$data['judul'] = "Status Check";
-			$this->load->view('v_header',$data);
-			$data['form'] = $this->m_data->sort_data_process_op()->result();
-			$data_urgency_normal = $this->m_data->sort_data_urgency_normal()->result();
-			$data_urgency_immedietly = $this->m_data->sort_data_urgency_immedietly()->result();
-			$data_approved_pending = $this->m_data->sort_data_approved_pending()->result();
-			$data_approved_asm = $this->m_data->sort_data_approved_asm()->result();
-			$data_approved_dh = $this->m_data->sort_data_approved_dh()->result();
-			$data_process_np = $this->m_data->sort_data_process_np()->result();
-			$data_process_op = $this->m_data->sort_data_process_op()->result();
-			$data['count_urgency_normal'] = count($data_urgency_normal);
-			$data['count_urgency_immedietly'] = count($data_urgency_immedietly);
-			$data['count_approved_pending'] = count($data_approved_pending);
-			$data['count_approved_asm'] = count($data_approved_asm);
-			$data['count_approved_dh'] = count($data_approved_dh);
-			$data['count_process_np'] = count($data_process_np);
-			$data['count_process_op'] = count($data_process_op);
-			$this->load->view('view_status',$data);
-			$this->load->view('v_footer',$data);
-		}else{
-			echo "404";
-		}
-	}
-
 	public function home_requester(){		
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header_requester',$data);
-		$data['form'] = $this->m_data->tampil_data()->result();
+
+		$email = $this->session->userdata('email');
+		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
+		$departemen_sekarang = $temp[0]->Departemen;
+
+			if ($departemen_sekarang == "HRD"){
+				$data['form'] = $this->m_data->tampil_data_HRD()->result();
+			}else if($departemen_sekarang == "Financial & Accounting"){
+				$data['form'] = $this->m_data->tampil_data_FA()->result();
+			}else {
+				echo "404";
+			}
+
 		$this->load->view('view_status_req',$data);
 		$this->load->view('v_footer_requester',$data);
 	}
@@ -179,31 +44,16 @@ class Web extends CI_Controller {
 	public function home_req_asm(){		
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header_asm',$data);
-		$data['form'] = $this->m_data->tampil_data()->result();
 
 		$email = $this->session->userdata('email');
 		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
 		$departemen_sekarang = $temp[0]->Departemen;
 
 			if ($departemen_sekarang == "HRD"){
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
+				$data['form'] = $this->m_data->tampil_data_HRD()->result();
 			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-			}else{
+				$data['form'] = $this->m_data->tampil_data_FA()->result();
+			}else {
 				echo "404";
 			}
 		
@@ -211,339 +61,24 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer_asm',$data);
 	}
 
-	public function home_sort_asm(){
-		$sort = $this->input->get('sort');
-		if($sort == "Your Departement"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->tampil_data_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->tampil_data_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else{
-				echo "404";
-			}
-		}else if($sort == "Approval Pending"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->approved_pending_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->approved_pending_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else{
-				echo "404";
-			}
-		}else if($sort == "Approved by You"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->approved_asm_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->approved_asm_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else{
-				echo "404";
-			}
-		}else if($sort == "Approved by Dept. Head"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->approved_dh_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_asm',$data);
-				$data['form'] = $this->m_data->approved_dh_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_asm',$data);
-				$this->load->view('v_footer_asm',$data);
-			}else{
-				echo "404";
-			}
-		}else{
-			echo "404";
-		}
-	}
-
 	public function home_req_dh(){		
 		$data['judul'] = "Status Check";
 		$this->load->view('v_header_dh',$data);
-		$data['form'] = $this->m_data->tampil_data()->result();
 
 		$email = $this->session->userdata('email');
 		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
 		$departemen_sekarang = $temp[0]->Departemen;
 
 			if ($departemen_sekarang == "HRD"){
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
+				$data['form'] = $this->m_data->tampil_data_HRD()->result();
 			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-			}else{
+				$data['form'] = $this->m_data->tampil_data_FA()->result();
+			}else {
 				echo "404";
 			}
 
 		$this->load->view('view_status_dh',$data);
 		$this->load->view('v_footer_dh',$data);
-	}
-
-	public function home_sort_dh(){
-		$sort = $this->input->get('sort');
-		if($sort == "Your Departement"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->tampil_data_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->tampil_data_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else{
-				echo "404";
-			}
-		}else if($sort == "Approval Pending"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->approved_pending_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->approved_pending_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else{
-				echo "404";
-			}
-		}else if($sort == "Approved by A. Manager"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->approved_asm_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->approved_asm_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else{
-				echo "404";
-			}
-		}else if($sort == "Approved by You"){
-			$email = $this->session->userdata('email');
-			$temp = $this->m_data->get_jabatan_sekarang($email)->result();
-			$departemen_sekarang = $temp[0]->Departemen;
-
-			if ($departemen_sekarang == "HRD"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->approved_dh_HRD()->result();
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data['judul'] = "Status Check";
-				$this->load->view('v_header_dh',$data);
-				$data['form'] = $this->m_data->approved_dh_FA()->result();
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
-				$this->load->view('view_status_dh',$data);
-				$this->load->view('v_footer_dh',$data);
-			}else{
-				echo "404";
-			}
-		}
 	}
 
 	public function change_status(){
@@ -661,99 +196,252 @@ class Web extends CI_Controller {
 		}
 	}
 
-	function search(){ 
+	function search(){
 		$noticket = (int)$this->input->get('noticket');
 		$name = $this->input->get('name');
 		$from = $this->input->get('from');
 		$case = $this->input->get('case');
-		$data['form'] = $this->m_data->searchbox($noticket,$name,$from,$case)->result();
+		$status = $this->input->get('status');
+		$data['form'] = $this->m_data->searchbox($noticket,$name,$from,$case,$status)->result();
 		$data['judul'] = "Status Check";
-		//var_dump($data['form']);
-		//var_dump($noticket);
+		$searchbox = array(
+			'noticket' => $noticket,
+			'from' => $from,
+			'name' => $name,
+			'case' => $case,
+			'status' => $status
+		);
+		$this->session->set_userdata($searchbox);
+		if($noticket == 0) {
+    		$this->session->set_userdata('noticket',null);
+		} else {
+			$this->session->set_userdata('noticket',$noticket);
+		}
 		$this->load->view('v_header',$data);
 		$this->load->view('view_status',$data);
 		$this->load->view('v_footer',$data);
+		$this->session->sess_destroy();
+	}
+
+	function download(){
+		$query = $this->db->query("select * from form");
+			$this->load->dbutil();
+			$this->load->helper('file');
+			$this->load->helper('download');
+			$delimiter = ",";
+			$newline = "\r\n";
+			$filename = "REQ_FORM".date("Y_m_d").'.csv';
+
+			header('Content-type:text/csv');
+			header('Content-Disposition: attachment;filename='.$filename);
+			header('Cache-Control: no-store, no-cache, must-revalidate');
+			header('Cache-Control: post-check=0, pre-check=0');
+			header('Pragma: no-cache');
+			header('Expires:0');
+
+			$handle = fopen('php://output','w');
+
+			fputcsv($handle, array(
+				'noticket',
+				'nama',
+				'dari',
+				'e_mail',
+				'untuk',
+				'date',
+				'kasus',
+				'duty',
+				'dateoec',
+				'systemint',
+				'urgency',
+				'description',
+				'approvalstatus',
+				'process'));
+
+			$data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+			foreach ($data as $key => $row){
+				fputcsv($handle, $row);
+			} fclose($handle);
+			exit;
 	}
 
 	function search_req(){ 
-		$search = $this->input->get('search');
-		$data['form'] = $this->m_data->search_ticket($search)->result();
-		$data['judul'] = "Status Check";
-		$this->load->view('v_header_requester',$data);
-		$this->load->view('view_status_req',$data);
-		$this->load->view('v_footer_requester',$data);
+		$email = $this->session->userdata('email');
+		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
+		$departemen_sekarang = $temp[0]->Departemen;
+
+			if ($departemen_sekarang == "HRD"){
+				$noticket = (int)$this->input->get('noticket');
+				$name = $this->input->get('name');
+				$from = $this->input->get('from');
+				$case = $this->input->get('case');
+				$status = $this->input->get('status');
+				$data['form'] = $this->m_data->searchbox_HRD($noticket,$name,$from,$case,$status)->result();
+				$data['judul'] = "Status Check";
+				$searchbox = array(
+					'noticket' => $noticket,
+					'from' => $from,
+					'name' => $name,
+					'case' => $case,
+					'status' => $status
+				);
+				$this->session->set_userdata($searchbox);
+				if($noticket == 0) {
+    				$this->session->set_userdata('noticket',null);
+				} else {
+					$this->session->set_userdata('noticket',$noticket);
+				}
+				$this->load->view('v_header_requester',$data);
+				$this->load->view('view_status_req',$data);
+				$this->load->view('v_footer_requester',$data);
+				$this->session->sess_destroy();
+			}else if($departemen_sekarang == "Financial & Accounting"){
+				$noticket = (int)$this->input->get('noticket');
+				$name = $this->input->get('name');
+				$from = $this->input->get('from');
+				$case = $this->input->get('case');
+				$status = $this->input->get('status');
+				$data['form'] = $this->m_data->searchbox_FA($noticket,$name,$from,$case,$status)->result();
+				$data['judul'] = "Status Check";
+				$searchbox = array(
+					'noticket' => $noticket,
+					'from' => $from,
+					'name' => $name,
+					'case' => $case,
+					'status' => $status
+				);
+				$this->session->set_userdata($searchbox);
+				if($noticket == 0) {
+    				$this->session->set_userdata('noticket',null);
+				} else {
+					$this->session->set_userdata('noticket',$noticket);
+				}
+				$this->load->view('v_header_requester',$data);
+				$this->load->view('view_status_req',$data);
+				$this->load->view('v_footer_requester',$data);
+				$this->session->sess_destroy();
+			}else{
+				echo "404";
+			}
 	}
 
 	function search_req_asm(){ 
-		$search = $this->input->get('search');
-		$data['form'] = $this->m_data->search_ticket($search)->result();
-
 		$email = $this->session->userdata('email');
 		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
 		$departemen_sekarang = $temp[0]->Departemen;
 
 			if ($departemen_sekarang == "HRD"){
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
+				$noticket = (int)$this->input->get('noticket');
+				$name = $this->input->get('name');
+				$from = $this->input->get('from');
+				$case = $this->input->get('case');
+				$status = $this->input->get('status');
+				$data['form'] = $this->m_data->searchbox_HRD($noticket,$name,$from,$case,$status)->result();
+				$data['judul'] = "Status Check";
+				$searchbox = array(
+					'noticket' => $noticket,
+					'from' => $from,
+					'name' => $name,
+					'case' => $case,
+					'status' => $status
+				);
+				$this->session->set_userdata($searchbox);
+				if($noticket == 0) {
+    				$this->session->set_userdata('noticket',null);
+				} else {
+					$this->session->set_userdata('noticket',$noticket);
+				}
+				$this->load->view('v_header_asm',$data);
+				$this->load->view('view_status_asm',$data);
+				$this->load->view('v_footer_asm',$data);
+				$this->session->sess_destroy();
 			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
+				$noticket = (int)$this->input->get('noticket');
+				$name = $this->input->get('name');
+				$from = $this->input->get('from');
+				$case = $this->input->get('case');
+				$status = $this->input->get('status');
+				$data['form'] = $this->m_data->searchbox_FA($noticket,$name,$from,$case,$status)->result();
+				$data['judul'] = "Status Check";
+				$searchbox = array(
+					'noticket' => $noticket,
+					'from' => $from,
+					'name' => $name,
+					'case' => $case,
+					'status' => $status
+				);
+				$this->session->set_userdata($searchbox);
+				if($noticket == 0) {
+    				$this->session->set_userdata('noticket',null);
+				} else {
+					$this->session->set_userdata('noticket',$noticket);
+				}
+				$this->load->view('v_header_asm',$data);
+				$this->load->view('view_status_asm',$data);
+				$this->load->view('v_footer_asm',$data);
+				$this->session->sess_destroy();
 			}else{
 				echo "404";
 			}
-
-		$data['judul'] = "Status Check";
-		$this->load->view('v_header_asm',$data);
-		$this->load->view('view_status_asm',$data);
-		$this->load->view('v_footer_asm',$data);
 	}
 
 	function search_req_dh(){ 
-		$search = $this->input->get('search');
-		$data['form'] = $this->m_data->search_ticket($search)->result();
-
 		$email = $this->session->userdata('email');
 		$temp = $this->m_data->get_jabatan_sekarang($email)->result();
 		$departemen_sekarang = $temp[0]->Departemen;
 
 			if ($departemen_sekarang == "HRD"){
-				$data_your_departement = $this->m_data->tampil_data_HRD()->result();
-				$data_approval_pending = $this->m_data->approved_pending_HRD()->result();
-				$data_approved_asm = $this->m_data->approved_asm_HRD()->result();
-				$data_approved_dh = $this->m_data->approved_dh_HRD()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
+				$noticket = (int)$this->input->get('noticket');
+				$name = $this->input->get('name');
+				$from = $this->input->get('from');
+				$case = $this->input->get('case');
+				$status = $this->input->get('status');
+				$data['form'] = $this->m_data->searchbox_HRD($noticket,$name,$from,$case,$status)->result();
+				$data['judul'] = "Status Check";
+				$searchbox = array(
+					'noticket' => $noticket,
+					'from' => $from,
+					'name' => $name,
+					'case' => $case,
+					'status' => $status
+				);
+				$this->session->set_userdata($searchbox);
+				if($noticket == 0) {
+    				$this->session->set_userdata('noticket',null);
+				} else {
+					$this->session->set_userdata('noticket',$noticket);
+				}
+				$this->load->view('v_header_dh',$data);
+				$this->load->view('view_status_dh',$data);
+				$this->load->view('v_footer_dh',$data);
+				$this->session->sess_destroy();
 			}else if($departemen_sekarang == "Financial & Accounting"){
-				$data_your_departement = $this->m_data->tampil_data_FA()->result();
-				$data_approval_pending = $this->m_data->approved_pending_FA()->result();
-				$data_approved_asm = $this->m_data->approved_asm_FA()->result();
-				$data_approved_dh = $this->m_data->approved_dh_FA()->result();
-				$data['count_your_departement'] = count($data_your_departement);
-				$data['count_approval_pending'] = count($data_approval_pending);
-				$data['count_approved_asm'] = count($data_approved_asm);
-				$data['count_approved_dh'] = count($data_approved_dh);
+				$noticket = (int)$this->input->get('noticket');
+				$name = $this->input->get('name');
+				$from = $this->input->get('from');
+				$case = $this->input->get('case');
+				$status = $this->input->get('status');
+				$data['form'] = $this->m_data->searchbox_FA($noticket,$name,$from,$case,$status)->result();
+				$data['judul'] = "Status Check";
+				$searchbox = array(
+					'noticket' => $noticket,
+					'from' => $from,
+					'name' => $name,
+					'case' => $case,
+					'status' => $status
+				);
+				$this->session->set_userdata($searchbox);
+				if($noticket == 0) {
+    				$this->session->set_userdata('noticket',null);
+				} else {
+					$this->session->set_userdata('noticket',$noticket);
+				}
+				$this->load->view('v_header_dh',$data);
+				$this->load->view('view_status_dh',$data);
+				$this->load->view('v_footer_dh',$data);
+				$this->session->sess_destroy();
 			}else{
 				echo "404";
 			}
-		
-		$data['judul'] = "Status Check";
-		$this->load->view('v_header_dh',$data);
-		$this->load->view('view_status_dh',$data);
-		$this->load->view('v_footer_dh',$data);
 	}
 
 	function search_change(){ 

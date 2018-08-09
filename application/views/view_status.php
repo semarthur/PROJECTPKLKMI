@@ -1,4 +1,5 @@
 <section>
+<?php $this->load->library('session');?>
 <h1><?php echo $judul ?></h1>
 <style>
 * {
@@ -35,7 +36,7 @@ input[type=submit]:hover {
 .container {
     border-radius: 5px;
     width: 1060px;
-    height: 200px;
+    height: 250px;
     background-color: #f2f2f2;
     padding: 20px;
 }
@@ -94,10 +95,10 @@ input[type=submit]:hover {
         <label for="No. Ticket">No. Ticket</label>
       </div>
       <div class="col-75">
-        <input type="text" name="noticket" >
+        <input type="text" value="<?php if(null!==($this->session->userdata('noticket'))){ echo $this->session->userdata('noticket');} ?>" name="noticket" />
       </div>
       <div class="col-85">
-        <input type="text" name="from" >
+        <input type="text" value="<?php if(null!==($this->session->userdata('from'))){ echo $this->session->userdata('from');} ?>" name="from" >
       </div>
       <div class="col-35">
         <label for="from">From</label>
@@ -108,11 +109,11 @@ input[type=submit]:hover {
         <label for="name">Name</label>
       </div>
       <div class="col-75">
-        <input type="text" name="name" >
+        <input type="text" value="<?php if(null!==($this->session->userdata('name'))){ echo $this->session->userdata('name');} ?>" name="name" >
       </div>
       <div class="col-85">
-        <select id="case" name="case" >
-          <option value=""></option>
+        <select id="case"  name="case" >
+          <option value=""><?php if(null!==($this->session->userdata('case'))){ echo $this->session->userdata('case');} ?></option>
           <option value="Software Package">Software Package</option>
           <option value="System Application">System Application</option>
           <option value="Hardware">Hardware</option>
@@ -126,7 +127,28 @@ input[type=submit]:hover {
       </div>
     </div>
     <div class="row">
+      <div class="col-25">
+        <label for=""></label>
+      </div>
+      <div class="col-75">
+      </div>
+      <div class="col-85">
+        <select id="status"  name="status" >
+          <option value=""><?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?></option>
+          <option value="Not Processed">Not Processed</option>
+          <option value="On Process">On Process</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
+      <div class="col-35">
+        <label for="status">Status</label>
+      </div>
+    </div>
+    <div class="row">
       <input type="submit" value="Search">
+    </div>
+    <div class="row">
+      <a href="<?php echo base_url('web/download') ?>" class="btn">Download</a>
     </div>
     </form>
   </div><br><br><br>

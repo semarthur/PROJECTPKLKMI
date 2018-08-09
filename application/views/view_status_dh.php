@@ -1,29 +1,153 @@
 <section>
 <h1><?php echo $judul ?></h1>
-<div class="search-container">
-    <form action="<?php echo base_url(). 'web/search_req_dh'; ?>" method="get">
-      <input type="text" placeholder="your ticket number here ..." name="search">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 1px 1px 1px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    width: 1060px;
+    height: 250px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-35 {
+  float: right;
+  width: 15%;
+  margin-top: 6px;
+  margin-right: 0px;
+}
+
+.col-85 {
+    float: right;
+    width: 25%;
+    margin-top: 6px;
+    margin-right: 160px;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1060px, max-height: 200px) {
+    .col-25, .col-35, .col-75, .col-85, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+</style>
+<div class="container">
+  <form action="<?php echo base_url(). 'web/search_req_dh'; ?>" method="get">
+    <div class="row">
+      <div class="col-25">
+        <label for="Search Box"><b>Search Box</b></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="No. Ticket">No. Ticket</label>
+      </div>
+      <div class="col-75">
+        <input type="text" value="<?php if(null!==($this->session->userdata('noticket'))){ echo $this->session->userdata('noticket');} ?>" name="noticket" />
+      </div>
+      <div class="col-85">
+        <input type="text" value="<?php if(null!==($this->session->userdata('from'))){ echo $this->session->userdata('from');} ?>" name="from" >
+      </div>
+      <div class="col-35">
+        <label for="from">From</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" value="<?php if(null!==($this->session->userdata('name'))){ echo $this->session->userdata('name');} ?>" name="name" >
+      </div>
+      <div class="col-85">
+        <select id="case"  name="case" >
+          <option value=""><?php if(null!==($this->session->userdata('case'))){ echo $this->session->userdata('case');} ?></option>
+          <option value="Software Package">Software Package</option>
+          <option value="System Application">System Application</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Data Communication / Internet">Data Communication / Internet</option>
+          <option value="LAN / WAN / Communication">LAN / WAN / Communication</option>
+          <option value="Order Catridge / Toner">Order Catridge / Toner</option>
+        </select>
+      </div>
+      <div class="col-35">
+        <label for="Case">Case</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for=""></label>
+      </div>
+      <div class="col-75">
+      </div>
+      <div class="col-85">
+        <select id="status"  name="status" >
+          <option value=""><?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?></option>
+          <option value="Not Processed">Not Processed</option>
+          <option value="On Process">On Process</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
+      <div class="col-35">
+        <label for="status">Status</label>
+      </div>
+    </div>
+    <div class="row">
       <input type="submit" value="Search">
+    </div>
     </form>
-  </div><br><br>
-  <a>SORT DATA BY</a>
-<form action="<?php echo base_url(). 'web/home_sort_dh'; ?>" method="get">
-<select id="sort" name="sort">
-  <option value="">choose here</option>
-  <option value="Your Departement">Your Departement</option>
-  <option value="Approval Pending">Approval Pending</option>
-  <option value="Approved by A. Manager">Approved by A. Manager</option>
-  <option value="Approved by You">Approved by You</option>
-</select>
-<input type="submit" value="Go">
-</form>
-<br><br>
-<a>Count Status :</a>
-<li><a>Your Departement : <?php echo $count_your_departement ?></a> </li>
-<li><a>Approval Pending : <?php echo $count_approval_pending ?></a> </li>
-<li><a>Approved by You : <?php echo $count_approved_asm ?></a> </li>
-<li><a>Approved by Dept. Head : <?php echo $count_approved_dh ?></a> </li>
-<br><br>
+  </div><br><br><br>
   <style>
 	table {
     	border-collapse: collapse;

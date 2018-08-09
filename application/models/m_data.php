@@ -7,7 +7,7 @@ class M_data extends CI_Model{
 	}
 
 	function tampil_data(){
-		return $this->db->get('form');
+		return $this->db->query("select * from form UNION select * from form_na");
 	}
 
 	function tampil_data_HRD(){
@@ -28,36 +28,50 @@ class M_data extends CI_Model{
 		return $this->db->get('account')->row();
 	}
 
-	function fetch_data_search($search){
-		$this->db->select("*");
-		$this->db->from("form");
-		if($search != ''){
-			$this->db->like('noticket', $search);
-			$this->db->or_like('nama', $search);
-			$this->db->or_like('dari', $search);
-			$this->db->or_like('kasus', $search);
+	function searchbox($noticket,$name,$from,$case,$status){
+		if($noticket != 0){
+			return $query = $this->db->query("select * from form WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
+		} else {
+			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
 		}
-		return $this->db->get();
 	}
 
-	function searchbox($noticket,$name,$from,$case){
+	function searchbox_HRD($noticket,$name,$from,$case,$status){
 		if($noticket != 0){
 			$this->db->where('noticket',$noticket);
 			$this->db->like('nama',$name);
-			$this->db->like('dari',$from);
+			$this->db->like('dari','HRD');
 			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
 			return $this->db->get('form');
 		} else {
 			$this->db->like('nama',$name);
-			$this->db->like('dari',$from);
+			$this->db->like('dari','HRD');
 			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
 			return $this->db->get('form');
 		}
-		
+	}
+
+	function searchbox_FA($noticket,$name,$from,$case,$status){
+		if($noticket != 0){
+			$this->db->where('noticket',$noticket);
+			$this->db->like('nama',$name);
+			$this->db->like('dari','Financial & Accounting');
+			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
+			return $this->db->get('form');
+		} else {
+			$this->db->like('nama',$name);
+			$this->db->like('dari','Financial & Accounting');
+			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
+			return $this->db->get('form');
+		}
 	}
 
 	function search_ticket($search){
-		return $this->db->query("select * from form where noticket and nama and dari and kasus LIKE \"%$search%\"");
+		return $this->db->query("select * from form where noticket LIKE \"%$search%\"");
 	}
 
 	function search_ticket_done($search){
@@ -65,7 +79,7 @@ class M_data extends CI_Model{
 	}
 
 	function edit_status($where,$table){		
-		return $this->db->get_where($table,$where);
+	return $this->db->get_where($table,$where);
 	}
 
 	function update_status($where,$data,$table){
@@ -97,72 +111,20 @@ class M_data extends CI_Model{
 		$this->db->where($where);
 		$q = $this->db->get('form')->result();
 		foreach ($q as $r) { 
-			$this->db->insert('form_done', $r); 
-		}
-		$this->db->where($where);
-		$this->db->delete('form');
+        	$this->db->insert('form_done', $r); 
+    	}
+    	$this->db->where($where);
+    	$this->db->delete('form');
 	}
 
 	function pindah_table_na($where,$data,$table){
 		$this->db->where($where);
 		$q = $this->db->get('form')->result();
 		foreach ($q as $r) { 
-			$this->db->insert('form_na', $r);
-		}
-		$this->db->where($where);
-		$this->db->delete('form');
-	}
-
-	function sort_data_approved_dh(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by Dept. Head'");
-	}
-
-	function sort_data_approved_asm(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by A. Manager'");
-	}
-
-	function sort_data_approved_pending(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Pending'");
-	}
-
-	function sort_data_urgency_normal(){
-		return $this->db->query("select * from form where urgency LIKE 'normal'");
-	}
-
-	function sort_data_urgency_immedietly(){
-		return $this->db->query("select * from form where urgency LIKE 'immedietly'");
-	}
-
-	function sort_data_process_np(){
-		return $this->db->query("select * from form where process LIKE 'Not Processed'");
-	}
-
-	function sort_data_process_op(){
-		return $this->db->query("select * from form where process LIKE 'On Process'");
-	}
-
-	function approved_pending_HRD(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Pending' AND dari LIKE 'HRD'");
-	}
-
-	function approved_pending_FA(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Pending' AND dari LIKE 'Financial & Accounting'");
-	}
-
-	function approved_asm_HRD(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by A. Manager' AND dari LIKE 'HRD'");
-	}
-
-	function approved_dh_HRD(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by Dept. Head' AND dari LIKE 'HRD'");
-	}
-
-	function approved_asm_FA(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by A. Manager' AND dari LIKE 'Financial & Accounting'");
-	}
-
-	function approved_dh_FA(){
-		return $this->db->query("select * from form where approvalstatus LIKE 'Approved by Dept. Head' AND dari LIKE 'Financial & Accounting'");
+        	$this->db->insert('form_na', $r);
+    	}
+    	$this->db->where($where);
+    	$this->db->delete('form');
 	}
 
 }

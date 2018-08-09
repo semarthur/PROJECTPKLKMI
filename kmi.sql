@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2018 at 10:03 AM
+-- Generation Time: Aug 09, 2018 at 03:43 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -85,7 +85,7 @@ INSERT INTO `form` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasu
 (4, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Software Package', 'Installation', '2018-07-23', 'no', 'immedietly', 'word 2013 error tolong di install ulang dengan lisensi thx', 'Pending', 'Not Processed'),
 (5, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'SWD', '2018-07-23', 'System Application', 'Additional / Change / Delete', '2018-08-20', 'yes', 'normal', 'untuk merubah data penjualan dari datababase ke excel dan pdf thx', 'Approved by Dept. Head', 'On Process'),
 (6, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Additional / Change / Delete', '0000-00-00', 'no', 'immedietly', 'catridge rusak soalnya kalau ngeprint ada garis dan ada bocor sedikit', 'Pending', 'Not Processed'),
-(7, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-26', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-07-26', 'no', 'immedietly', 'habis tolong diganti thx', 'Pending', 'Not Processed');
+(10, 'vice head', 'HRD', 'viceheadexternal@gmail.com', 'ICT', '2018-08-07', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-08-07', 'no', 'normal', 'tinta printer habis', 'Approved by A. Manager', 'Not Processed');
 
 -- --------------------------------------------------------
 
@@ -116,7 +116,9 @@ CREATE TABLE `form_done` (
 
 INSERT INTO `form_done` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
 (1, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'tinta printer HR habis tolong diganti thx', 'Approved by Dept. Head', 'Done'),
-(3, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Hardware', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'UPS tidak nyala tolong diganti thx', 'Approved by Dept. Head', 'Done');
+(3, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Hardware', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'UPS tidak nyala tolong diganti thx', 'Approved by Dept. Head', 'Done'),
+(8, 'Samuel Arthur', 'Information System', 'sem.hutabarat@gmail.com', 'ICT', '2018-08-07', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-08-07', 'no', 'normal', 'tinta printer habis', 'Pending', 'Done'),
+(9, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-08-07', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-08-07', 'no', 'normal', 'tinta printer habis', 'Approved by Dept. Head', 'Done');
 
 -- --------------------------------------------------------
 
@@ -140,6 +142,13 @@ CREATE TABLE `form_na` (
   `approvalstatus` varchar(50) NOT NULL,
   `process` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `form_na`
+--
+
+INSERT INTO `form_na` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
+(7, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-26', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-07-26', 'no', 'immedietly', 'habis tolong diganti thx', 'Not Approved', 'Not Processed');
 
 --
 -- Indexes for dumped tables
@@ -183,7 +192,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
