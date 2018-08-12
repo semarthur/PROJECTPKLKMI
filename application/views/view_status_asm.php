@@ -1,3 +1,9 @@
+<?php
+  if (isset($_GET['download'])) {
+    $params = "web/export?noticket=".$_GET['noticket']."&from=".$_GET['from']."&name=".$_GET['name']."&case=".$_GET['case']."&status=".$_GET['status']."&page=".$_GET['page'];
+    redirect(base_url().$params);
+  }
+?>
 <section>
 <?php $this->load->library('session');?>
 <h1><?php echo $judul ?></h1>
@@ -95,6 +101,7 @@ input[type=submit]:hover {
         <label for="No. Ticket">No. Ticket</label>
       </div>
       <div class="col-75">
+        <input type="text" value="asm" name="page" hidden/>
         <input type="text" value="<?php if(null!==($this->session->userdata('noticket'))){ echo $this->session->userdata('noticket');} ?>" name="noticket" />
       </div>
       <div class="col-85">
@@ -146,6 +153,10 @@ input[type=submit]:hover {
     </div>
     <div class="row">
       <input type="submit" value="Search">
+    </div>
+    <div class="row">
+      <!-- <a href="<?php echo base_url('web/export') ?>" class="btn">Download</a> -->
+      <input type="submit" value="Download" name="download" style="margin-right: 90%;">
     </div>
     </form>
   </div><br><br><br>
