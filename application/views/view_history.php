@@ -1,9 +1,138 @@
 <section>
 <h1><?php echo $judul ?></h1>
-<div class="search-container">
-    <form action="<?php echo base_url(). 'web/search_history'; ?>" method="get">
-      <input type="text" placeholder="your ticket number here ..." name="search">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 1px 1px 1px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    width: 1060px;
+    height: 250px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-35 {
+  float: right;
+  width: 15%;
+  margin-top: 6px;
+  margin-right: 0px;
+}
+
+.col-85 {
+    float: right;
+    width: 25%;
+    margin-top: 6px;
+    margin-right: 160px;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1060px, max-height: 200px) {
+    .col-25, .col-35, .col-75, .col-85, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+</style>
+<div class="container">
+  <form action="<?php echo base_url(). 'web/search_history'; ?>" method="get">
+    <div class="row">
+      <div class="col-25">
+        <label for="Search Box"><b>Search Box</b></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="No. Ticket">No. Ticket</label>
+      </div>
+      <div class="col-75">
+        <input type="text" value="<?php if(null!==($this->session->userdata('noticket'))){ echo $this->session->userdata('noticket');} ?>" name="noticket" />
+      </div>
+      <div class="col-85">
+        <input type="text" value="<?php if(null!==($this->session->userdata('from'))){ echo $this->session->userdata('from');} ?>" name="from" >
+      </div>
+      <div class="col-35">
+        <label for="from">From</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" value="<?php if(null!==($this->session->userdata('name'))){ echo $this->session->userdata('name');} ?>" name="name" >
+      </div>
+      <div class="col-85">
+        <select id="case"  name="case" >
+          <option value=""><?php if(null!==($this->session->userdata('case'))){ echo $this->session->userdata('case');} ?></option>
+          <option value="Software Package">Software Package</option>
+          <option value="System Application">System Application</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Data Communication / Internet">Data Communication / Internet</option>
+          <option value="LAN / WAN / Communication">LAN / WAN / Communication</option>
+          <option value="Order Catridge / Toner">Order Catridge / Toner</option>
+        </select>
+      </div>
+      <div class="col-35">
+        <label for="Case">Case</label>
+      </div>
+    </div>
+    <div class="row">
       <input type="submit" value="Search">
+    </div><br>
+    </form>
+    <form action="<?php echo base_url(). 'web/export_done'; ?>" method="get">
+      <div class="row">
+      <input type="submit" value="Download">
+    </div>
     </form>
   </div><br><br><br>
   <style>
@@ -41,21 +170,21 @@
         <th>Status</th>
   	  </tr>
   	  	<?php
-		foreach($form_done as $fd){
+		foreach($form_done as $fdone){
 			echo "<tr>";
-			echo "<td>". $fd->noticket."</td>";
-      echo "<td>". $fd->nama."</td>";
-			echo "<td>". $fd->dari."</td>";
-			echo "<td>". $fd->untuk."</td>";
-			echo "<td>".$fd->date."</td>";
-			echo "<td>".$fd->kasus."</td>";
-			echo "<td>".$fd->duty."</td>";
-			echo "<td>".$fd->dateoec."</td>";
-			echo "<td>".$fd->systemint."</td>";
-			echo "<td>".$fd->urgency."</td>";
-			echo "<td>".$fd->description."</td>";
-      echo "<td>".$fd->approvalstatus."</td>";
-      echo "<td>".$fd->process."</td>";
+			echo "<td>". $fdone->noticket."</td>";
+      echo "<td>". $fdone->nama."</td>";
+			echo "<td>". $fdone->dari."</td>";
+			echo "<td>". $fdone->untuk."</td>";
+			echo "<td>".$fdone->date."</td>";
+			echo "<td>".$fdone->kasus."</td>";
+			echo "<td>".$fdone->duty."</td>";
+			echo "<td>".$fdone->dateoec."</td>";
+			echo "<td>".$fdone->systemint."</td>";
+			echo "<td>".$fdone->urgency."</td>";
+			echo "<td>".$fdone->description."</td>";
+      echo "<td>".$fdone->approvalstatus."</td>";
+      echo "<td>".$fdone->process."</td>";
 		}
 			?>
 	</table>
