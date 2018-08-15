@@ -119,7 +119,7 @@ input[type=submit]:hover {
       </div>
       <div class="col-85">
         <select id="case"  name="case" >
-          <option value=""><?php if(null!==($this->session->userdata('case'))){ echo $this->session->userdata('case');} ?></option>
+          <option value="<?php if(null!==($this->session->userdata('case'))){ echo $this->session->userdata('case');} ?>"><?php if(null!==($this->session->userdata('case'))){ echo $this->session->userdata('case');} ?></option>
           <option value="Software Package">Software Package</option>
           <option value="System Application">System Application</option>
           <option value="Hardware">Hardware</option>
@@ -140,7 +140,7 @@ input[type=submit]:hover {
       </div>
       <div class="col-85">
         <select id="status"  name="status" >
-          <option value=""><?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?></option>
+          <option value="<?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?>"><?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?></option>
           <option value="Not Processed">Not Processed</option>
           <option value="On Process">On Process</option>
           <option value="Done">Done</option>

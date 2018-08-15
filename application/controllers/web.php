@@ -233,22 +233,26 @@ class Web extends CI_Controller {
 		$status = $this->input->get('status');
 		$page = $this->input->get('page');
 		$data = $this->m_data->searchbox($noticket,$name,$from,$case,$status)->result();
+		$kiw = "ajg";
 		if($page != "normal"){
-			if(($noticket == null && $name == null && $from == null && $case == null && $status = null) ||
-				($noticket == "0" && $name == "" && $from == "" && $case == "" && $status = "")){
+			if(($noticket == null && $name == null && $from == null && $case == null && $status == null) ||
+				($noticket == "0" && $name == "" && $from == "" && $case == "" && $status == "")){
 				if ($departemen_sekarang == "HRD"){
 					$data = $this->m_data->tampil_data_HRD()->result();
+					$kiw = "normal null hrd";
 				}else if($departemen_sekarang == "Financial & Accounting"){
 					$data = $this->m_data->tampil_data_FA()->result();
 				} 
 			} else {
 				if ($departemen_sekarang == "HRD"){
 					$data = $this->m_data->searchbox_HRD($noticket,$name,$from,$case,$status)->result();
+					$kiw = "normal not null hrd";
 				}else if($departemen_sekarang == "Financial & Accounting"){
 					$data = $this->m_data->searchbox_FA($noticket,$name,$from,$case,$status)->result();
 				}
 			} 
 		}
+		//var_dump($status);
 
 		include APPPATH.'third_party\PHPExcel.php';
 
