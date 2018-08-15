@@ -42,7 +42,7 @@ input[type=submit]:hover {
 .container {
     border-radius: 5px;
     width: 1060px;
-    height: 300px;
+    height: 250px;
     background-color: #f2f2f2;
     padding: 20px;
 }
@@ -144,6 +144,7 @@ input[type=submit]:hover {
           <option value=""><?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?></option>
           <option value="Not Processed">Not Processed</option>
           <option value="On Process">On Process</option>
+          <option value="Done">Done</option>
         </select>
       </div>
       <div class="col-35">
@@ -152,10 +153,12 @@ input[type=submit]:hover {
     </div>
     <div class="row">
       <input type="submit" value="Search">
-    </div><br>
-    <div class="row">
-      <input type="submit" value="Download" name="download" style="margin-left: 90%;">
     </div>
+    <div class="row">
+      <!-- <a href="<?php echo base_url('web/export') ?>" class="btn">Download</a> -->
+      <input type="submit" value="Download" name="download" style="margin-right: 90%;">
+    </div>
+    </form>
   </div><br><br><br>
   <style>
   table {

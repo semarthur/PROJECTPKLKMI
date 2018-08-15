@@ -11,11 +11,11 @@ class M_data extends CI_Model{
 	}
 
 	function tampil_data_HRD(){
-		return $this->db->query("select * from form where dari LIKE 'HRD' UNION select * from form_na where dari LIKE 'HRD' UNION select * from form_done where dari LIKE 'HRD'");
+		return $this->db->query("select * from form where dari LIKE 'HRD'");
 	}
 
 	function tampil_data_FA(){
-		return $this->db->query("select * from form where dari LIKE 'Financial & Accounting' UNION select * from form_na where dari LIKE 'Financial & Accounting' UNION select * from form_done where dari LIKE 'Financial & Accounting'");
+		return $this->db->query("select * from form where dari LIKE 'Financial & Accounting'");
 	}
 
 	function tampil_data_done(){
@@ -30,33 +30,43 @@ class M_data extends CI_Model{
 
 	function searchbox($noticket,$name,$from,$case,$status){
 		if($noticket != 0){
-			return $query = $this->db->query("select * from form WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
+			return $query = $this->db->query("select * from form WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
 		} else {
-			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
+			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
 		}
 	}
 
 	function searchbox_HRD($noticket,$name,$from,$case,$status){
 		if($noticket != 0){
-			return $query = $this->db->query("select * from form WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
+			$this->db->where('noticket',$noticket);
+			$this->db->like('nama',$name);
+			$this->db->like('dari','HRD');
+			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
+			return $this->db->get('form');
 		} else {
-			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
+			$this->db->like('nama',$name);
+			$this->db->like('dari','HRD');
+			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
+			return $this->db->get('form');
 		}
 	}
 
 	function searchbox_FA($noticket,$name,$from,$case,$status){
 		if($noticket != 0){
-			return $query = $this->db->query("select * from form WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
+			$this->db->where('noticket',$noticket);
+			$this->db->like('nama',$name);
+			$this->db->like('dari','Financial & Accounting');
+			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
+			return $this->db->get('form');
 		} else {
-			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
-		}
-	}
-
-	function searchbox_history($noticket,$name,$from,$case,$status){
-		if($noticket != 0){
-			return $query = $this->db->query("select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
-		} else {
-			return $query = $this->db->query("select * from form_done WHERE nama LIKE \"%$name%\" AND dari LIKE \"%$from%\" AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
+			$this->db->like('nama',$name);
+			$this->db->like('dari','Financial & Accounting');
+			$this->db->like('kasus',$case);
+			$this->db->like('process', $status);
+			return $this->db->get('form');
 		}
 	}
 
