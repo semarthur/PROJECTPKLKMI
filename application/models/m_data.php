@@ -40,7 +40,7 @@ class M_data extends CI_Model{
 		if($noticket != 0){
 			return $query = $this->db->query("select * from form WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
 		} else {
-			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
+			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE nama LIKE \"%$name%\" AND dari LIKE 'HRD' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
 		}
 	}
 
@@ -48,7 +48,7 @@ class M_data extends CI_Model{
 		if($noticket != 0){
 			return $query = $this->db->query("select * from form WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");
 		} else {
-			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE noticket LIKE \"%$noticket%\" AND nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
+			return $query = $this->db->query("select * from form WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_na WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\" UNION select * from form_done WHERE nama LIKE \"%$name%\" AND dari LIKE 'Financial & Accounting' AND kasus LIKE \"%$case%\" AND process LIKE \"%$status%\"");			
 		}
 	}
 

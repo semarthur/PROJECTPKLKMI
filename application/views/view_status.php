@@ -144,6 +144,7 @@ input[type=submit]:hover {
           <option value="<?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?>"><?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?></option>
           <option value="Not Processed">Not Processed</option>
           <option value="On Process">On Process</option>
+          <!-- <option value="Done">Done</option> -->
         </select>
       </div>
       <div class="col-35">
