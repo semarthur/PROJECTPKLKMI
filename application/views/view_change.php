@@ -235,6 +235,28 @@ input[type=submit]:hover {
       </div>
     </div>
     <div class="row">
+      <div class="col-25">
+        <label for="start_date">Start date</label>
+      </div>
+      <div class="col-25">
+        <input type="datetime-local" value="<?php
+          foreach($form as $f){
+            echo $f->startdate;
+          }?>" name="start_date">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="finished_date">Finished date</label>
+      </div>
+      <div class="col-25">
+        <input type="datetime-local" name="finished_date" value="<?php
+          foreach($form as $f){
+            echo $f->finisheddate;
+          }?>">
+      </div>
+    </div>
+    <div class="row">
       <input type="submit" value="Submit">
     </div>
   </form>

@@ -224,6 +224,14 @@ input[type=submit]:hover {
       </div>
     </div>
     <div class="row">
+      <div class="col-25">
+        <label for=""></label>
+      </div>
+      <div class="col-25">
+        <textarea id="alasan" name="alasan" placeholder="if you're not approving write your reason here ..." style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
       <input type="submit" value="Submit">
     </div>
   </form>

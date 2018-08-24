@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2018 at 03:43 AM
+-- Generation Time: Aug 24, 2018 at 10:44 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -73,19 +73,19 @@ CREATE TABLE `form` (
   `urgency` varchar(10) NOT NULL,
   `description` varchar(300) NOT NULL,
   `approvalstatus` enum('Pending','Not Approved','Approved by A. Manager','Approved by Dept. Head') NOT NULL,
-  `process` enum('Not Processed','On Process','Done','') NOT NULL
+  `process` enum('Not Processed','On Process','Done','') NOT NULL,
+  `startdate` varchar(20) NOT NULL,
+  `finisheddate` varchar(20) NOT NULL,
+  `reason` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `form`
 --
 
-INSERT INTO `form` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(2, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'SWD', '2018-07-23', 'System Application', 'Additional / Change / Delete', '2018-08-23', 'yes', 'normal', 'untuk merekap data karyawan yang baru', 'Approved by Dept. Head', 'On Process'),
-(4, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Software Package', 'Installation', '2018-07-23', 'no', 'immedietly', 'word 2013 error tolong di install ulang dengan lisensi thx', 'Pending', 'Not Processed'),
-(5, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'SWD', '2018-07-23', 'System Application', 'Additional / Change / Delete', '2018-08-20', 'yes', 'normal', 'untuk merubah data penjualan dari datababase ke excel dan pdf thx', 'Approved by Dept. Head', 'On Process'),
-(6, 'Josua Fernando', 'Financial & Accounting', 'indoprydee@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Additional / Change / Delete', '0000-00-00', 'no', 'immedietly', 'catridge rusak soalnya kalau ngeprint ada garis dan ada bocor sedikit', 'Pending', 'Not Processed'),
-(10, 'vice head', 'HRD', 'viceheadexternal@gmail.com', 'ICT', '2018-08-07', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-08-07', 'no', 'normal', 'tinta printer habis', 'Approved by A. Manager', 'Not Processed');
+INSERT INTO `form` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`, `startdate`, `finisheddate`, `reason`) VALUES
+(3, 'Vice Head', 'HRD', 'viceheadexternal@gmail.com', 'ICT', '2018-08-24', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-08-24', 'no', 'normal', 'order tinta sebanyak 5', 'Approved by A. Manager', 'On Process', '2018-08-24T15:12', '', ''),
+(4, 'Elkaf Fahrezi', 'HRD', 'fahrezi182@gmail.com', 'ICT', '2018-08-24', 'Hardware', 'Service / Repair', '2018-08-31', 'no', 'normal', 'laptop tidak menyala', 'Approved by Dept. Head', 'On Process', '2018-08-24T15:25', '', '');
 
 -- --------------------------------------------------------
 
@@ -107,18 +107,18 @@ CREATE TABLE `form_done` (
   `urgency` varchar(10) NOT NULL,
   `description` varchar(300) NOT NULL,
   `approvalstatus` varchar(50) NOT NULL,
-  `process` varchar(50) NOT NULL
+  `process` varchar(50) NOT NULL,
+  `startdate` varchar(20) NOT NULL,
+  `finisheddate` varchar(20) NOT NULL,
+  `reason` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `form_done`
 --
 
-INSERT INTO `form_done` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(1, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-07-23', 'Order Catridge / Toner', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'tinta printer HR habis tolong diganti thx', 'Approved by Dept. Head', 'Done'),
-(3, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-23', 'Hardware', 'Service / Repair', '2018-07-23', 'no', 'immedietly', 'UPS tidak nyala tolong diganti thx', 'Approved by Dept. Head', 'Done'),
-(8, 'Samuel Arthur', 'Information System', 'sem.hutabarat@gmail.com', 'ICT', '2018-08-07', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-08-07', 'no', 'normal', 'tinta printer habis', 'Pending', 'Done'),
-(9, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-08-07', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-08-07', 'no', 'normal', 'tinta printer habis', 'Approved by Dept. Head', 'Done');
+INSERT INTO `form_done` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`, `startdate`, `finisheddate`, `reason`) VALUES
+(1, 'Khairul Rizal', 'HRD', 'khairulrizal39@gmail.com', 'ICT', '2018-08-24', 'Hardware', 'Service / Repair', '2018-08-31', 'no', 'normal', 'Printer tidak mau ngeprint', 'Approved by Dept. Head', 'Done', '2018-08-24T15:13', '2018-08-27T08:15', '');
 
 -- --------------------------------------------------------
 
@@ -140,15 +140,18 @@ CREATE TABLE `form_na` (
   `urgency` varchar(10) NOT NULL,
   `description` varchar(300) NOT NULL,
   `approvalstatus` varchar(50) NOT NULL,
-  `process` varchar(50) NOT NULL
+  `process` varchar(50) NOT NULL,
+  `startdate` varchar(20) NOT NULL,
+  `finisheddate` varchar(20) NOT NULL,
+  `reason` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `form_na`
 --
 
-INSERT INTO `form_na` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`) VALUES
-(7, 'Samuel Arthur', 'HRD', 'semarthur@student.ub.ac.id', 'ICT', '2018-07-26', 'Order Catridge / Toner', 'Additional / Change / Delete', '2018-07-26', 'no', 'immedietly', 'habis tolong diganti thx', 'Not Approved', 'Not Processed');
+INSERT INTO `form_na` (`noticket`, `nama`, `dari`, `e_mail`, `untuk`, `date`, `kasus`, `duty`, `dateoec`, `systemint`, `urgency`, `description`, `approvalstatus`, `process`, `startdate`, `finisheddate`, `reason`) VALUES
+(2, 'semarthur', 'HRD', 'semarthur@student.ub.ac.id', 'SWD', '2018-08-24', 'Software Package', 'Additional / Change / Delete', '2018-09-24', 'yes', 'immedietly', 'untuk rekap data pegawai baru', 'Not Approved', 'Not Processed', '', '', 'masih bisa pakai program lama');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +195,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `noticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

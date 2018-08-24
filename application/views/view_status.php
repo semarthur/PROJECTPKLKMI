@@ -41,8 +41,8 @@ input[type=submit]:hover {
 
 .container {
     border-radius: 5px;
-    width: 1060px;
-    height: 250px;
+    width: 1260px;
+    height: 300px;
     background-color: #f2f2f2;
     padding: 20px;
 }
@@ -82,7 +82,7 @@ input[type=submit]:hover {
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 1060px, max-height: 200px) {
+@media screen and (max-width: 1260px, max-height: 300px) {
     .col-25, .col-35, .col-75, .col-85, input[type=submit] {
         width: 100%;
         margin-top: 0;
@@ -144,7 +144,6 @@ input[type=submit]:hover {
           <option value="<?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?>"><?php if(null!==($this->session->userdata('status'))){ echo $this->session->userdata('status');} ?></option>
           <option value="Not Processed">Not Processed</option>
           <option value="On Process">On Process</option>
-          <option value="Done">Done</option>
         </select>
       </div>
       <div class="col-35">
@@ -153,10 +152,9 @@ input[type=submit]:hover {
     </div>
     <div class="row">
       <input type="submit" value="Search">
-    </div>
+    </div><br>
     <div class="row">
-      <!-- <a href="<?php echo base_url('web/export') ?>" class="btn">Download</a> -->
-      <input type="submit" value="Download" name="download" style="margin-right: 90%;">
+      <input type="submit" value="Download" name="download" style="margin-left: 90%;">
     </div>
     </form>
   </div><br><br><br>
@@ -193,6 +191,8 @@ input[type=submit]:hover {
         <th>Description</th>
         <th>Approval Status</th>
         <th>Status</th>
+        <th>Start Date</th>
+        <th>Reason</th>
       </tr>
         <?php
     foreach($form as $f){
@@ -210,6 +210,8 @@ input[type=submit]:hover {
       echo "<td>".$f->description."</td>";
       echo "<td>".$f->approvalstatus."</td>";
       echo "<td>".$f->process."</td>";
+      echo "<td>".$f->startdate."</td>";
+      echo "<td>".$f->reason."</td>";
     }
       ?>
   </table>

@@ -7,6 +7,7 @@ class Crud extends CI_Controller{
 		parent::__construct();		
 		$this->load->model('m_data');
 		$this->load->helper('url');
+		$this->load->helper('date');
 
 	}
 	
@@ -338,6 +339,8 @@ class Crud extends CI_Controller{
 		$urgency = $this->input->post('urgency');
 		$description = $this->input->post('description');
 		$process = $this->input->post('status');
+		$startdate = $this->input->post('start_date');
+		$finisheddate = $this->input->post('finished_date');
 
 		$data = array(
 			'noticket' => $noticket,
@@ -352,7 +355,9 @@ class Crud extends CI_Controller{
 			'systemint' => $systemint,
 			'urgency' => $urgency,
 			'description' => $description,
-			'process' => $process
+			'process' => $process,
+			'startdate' => $startdate,
+			'finisheddate' => $finisheddate
 			);
 
 		$where = array(
@@ -503,6 +508,7 @@ class Crud extends CI_Controller{
 		$urgency = $this->input->post('urgency');
 		$description = $this->input->post('description');
 		$approvalstatus = $this->input->post('approvalstatus');
+		$reason = $this->input->post('alasan');
 
 		$data = array(
 			'noticket' => $noticket,
@@ -517,7 +523,8 @@ class Crud extends CI_Controller{
 			'systemint' => $systemint,
 			'urgency' => $urgency,
 			'description' => $description,
-			'approvalstatus' => $approvalstatus
+			'approvalstatus' => $approvalstatus,
+			'reason' => $reason
 			);
 
 		$where = array(
@@ -654,6 +661,7 @@ class Crud extends CI_Controller{
 		$urgency = $this->input->post('urgency');
 		$description = $this->input->post('description');
 		$approvalstatus = $this->input->post('approvalstatus');
+		$reason = $this->input->post('alasan');
 
 		$data = array(
 			'noticket' => $noticket,
@@ -668,7 +676,8 @@ class Crud extends CI_Controller{
 			'systemint' => $systemint,
 			'urgency' => $urgency,
 			'description' => $description,
-			'approvalstatus' => $approvalstatus
+			'approvalstatus' => $approvalstatus,
+			'reason' => $reason
 			);
 
 		$where = array(

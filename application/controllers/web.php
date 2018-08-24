@@ -251,15 +251,15 @@ class Web extends CI_Controller {
 					$data = $this->m_data->searchbox_FA($noticket,$name,$from,$case,$status)->result();
 				}
 			} 
-		}
+		} $this->session->sess_destroy();
 		//var_dump($status);
 
 		include APPPATH.'third_party\PHPExcel.php';
 
 		$excel = new PHPExcel();
 
-		$excel->getProperties()->setCreator('Firman Budi Safrizal')
-		->setLastModifiedBy('Firman Budi Safrizal')
+		$excel->getProperties()->setCreator('Samuel Arthur')
+		->setLastModifiedBy('Samuel Arthur')
 		->setTitle("Data")
 		->setSubject("Status");
 
@@ -306,7 +306,11 @@ class Web extends CI_Controller {
 		$excel->setActiveSheetIndex(0)->setCellValue('K3', "Urgency"); 
 		$excel->setActiveSheetIndex(0)->setCellValue('L3', "Description"); 
 		$excel->setActiveSheetIndex(0)->setCellValue('M3', "Approval Status"); 
-		$excel->setActiveSheetIndex(0)->setCellValue('N3', "Status"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('N3', "Status");
+		$excel->setActiveSheetIndex(0)->setCellValue('O3', "Start Date");
+		$excel->setActiveSheetIndex(0)->setCellValue('P3', "Finished Date");
+		$excel->setActiveSheetIndex(0)->setCellValue('Q3', "Reason");
+
 
 		$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
 		$excel->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
@@ -322,6 +326,9 @@ class Web extends CI_Controller {
 		$excel->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
 		$excel->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
 		$excel->getActiveSheet()->getStyle('N3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('O3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('P3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('Q3')->applyFromArray($style_col);
 
 			//$data = $this->data;//$this->db->query("select * from form")->result();
 		$no = 1; 
@@ -341,6 +348,9 @@ class Web extends CI_Controller {
 			$excel->setActiveSheetIndex(0)->setCellValue('L'.$numrow, $row->description);
 			$excel->setActiveSheetIndex(0)->setCellValue('M'.$numrow, $row->approvalstatus);
 			$excel->setActiveSheetIndex(0)->setCellValue('N'.$numrow, $row->process);
+			$excel->setActiveSheetIndex(0)->setCellValue('O'.$numrow, $row->startdate);
+			$excel->setActiveSheetIndex(0)->setCellValue('P'.$numrow, $row->finisheddate);
+			$excel->setActiveSheetIndex(0)->setCellValue('Q'.$numrow, $row->reason);
 
 			$excel->getActiveSheet()->getStyle('A'.$numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 			$excel->getActiveSheet()->getStyle('B'.$numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
@@ -360,6 +370,9 @@ class Web extends CI_Controller {
 			$excel->getActiveSheet()->getStyle('L'.$numrow)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('M'.$numrow)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('N'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('O'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('P'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('Q'.$numrow)->applyFromArray($style_row);
 
 			$no++;
 			$numrow++;
@@ -379,6 +392,178 @@ class Web extends CI_Controller {
 		$excel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
 		$excel->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
 		$excel->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('Q')->setAutoSize(true);
+
+		$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+		$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+		$excel->getActiveSheet(0)->setTitle("File Data Status");
+		$excel->setActiveSheetIndex(0);
+
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="Data Status.xlsx"');
+		header('Cache-Control: max-age=0');
+		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+		$write->save('php://output');
+	}
+
+	function export_history(){
+		$noticket = (int)$this->input->get('noticket');
+		$name = $this->input->get('name');
+		$from = $this->input->get('from');
+		$case = $this->input->get('case');
+		$status = $this->input->get('status');
+		$page = $this->input->get('page');
+		$data = $this->m_data->searchbox($noticket,$name,$from,$case,$status)->result();
+		$kiw = "ajg";
+		if($page == "history"){
+			if(($noticket == null && $name == null && $from == null && $case == null && $status == null) ||
+				($noticket == "0" && $name == "" && $from == "" && $case == "" && $status == "")){
+					$data = $this->m_data->tampil_data_done()->result();
+					$kiw = "normal history"; 
+			} else {
+				$data = $this->m_data->searchbox_history($noticket,$name,$from,$case,$status)->result();
+					$kiw = "normal not null history";
+			} 
+		} $this->session->sess_destroy();
+		//var_dump($status);
+
+		include APPPATH.'third_party\PHPExcel.php';
+
+		$excel = new PHPExcel();
+
+		$excel->getProperties()->setCreator('Samuel Arthur')
+		->setLastModifiedBy('Samuel Arthur')
+		->setTitle("Data")
+		->setSubject("Status");
+
+		$style_col = array(
+			'font' => array('bold' => true), 
+			'alignment' => array(
+				'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, 
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER 
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
+			)
+		);
+
+		$style_row = array(
+			'alignment' => array(
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN)
+			)
+		);
+		$excel->setActiveSheetIndex(0)->setCellValue('A1', "DATA STATUS"); 
+		$excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); 
+		$excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); 
+		$excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('A3', "No");
+		$excel->setActiveSheetIndex(0)->setCellValue('B3', "No. Ticket");
+		$excel->setActiveSheetIndex(0)->setCellValue('C3', "Name"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('D3', "From");
+		$excel->setActiveSheetIndex(0)->setCellValue('E3', "To");
+		$excel->setActiveSheetIndex(0)->setCellValue('F3', "Date"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('G3', "Case"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('H3', "Duty"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('I3', "Date of Expectancy Completion"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('J3', "System Integrated"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('K3', "Urgency"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('L3', "Description"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('M3', "Approval Status"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('N3', "Status");
+		$excel->setActiveSheetIndex(0)->setCellValue('O3', "Start Date");
+		$excel->setActiveSheetIndex(0)->setCellValue('P3', "Finished Date"); 
+
+		$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('J3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('K3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('N3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('O3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('P3')->applyFromArray($style_col);
+
+			//$data = $this->data;//$this->db->query("select * from form")->result();
+		$no = 1; 
+		$numrow = 4;
+		foreach($data as $row){ 
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $row->noticket);
+			$excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $row->nama);
+			$excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $row->dari);
+			$excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $row->untuk);
+			$excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $row->date);
+			$excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $row->kasus);
+			$excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, $row->duty);
+			$excel->setActiveSheetIndex(0)->setCellValue('I'.$numrow, $row->dateoec);
+			$excel->setActiveSheetIndex(0)->setCellValue('J'.$numrow, $row->systemint);
+			$excel->setActiveSheetIndex(0)->setCellValue('K'.$numrow, $row->urgency);
+			$excel->setActiveSheetIndex(0)->setCellValue('L'.$numrow, $row->description);
+			$excel->setActiveSheetIndex(0)->setCellValue('M'.$numrow, $row->approvalstatus);
+			$excel->setActiveSheetIndex(0)->setCellValue('N'.$numrow, $row->process);
+			$excel->setActiveSheetIndex(0)->setCellValue('O'.$numrow, $row->startdate);
+			$excel->setActiveSheetIndex(0)->setCellValue('P'.$numrow, $row->finisheddate);
+
+			$excel->getActiveSheet()->getStyle('A'.$numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+			$excel->getActiveSheet()->getStyle('B'.$numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+			$excel->getActiveSheet()->getStyle('I'.$numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+			$excel->getActiveSheet()->getStyle('J'.$numrow)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+			$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('I'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('J'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('K'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('L'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('M'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('N'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('O'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('P'.$numrow)->applyFromArray($style_row);
+
+			$no++;
+			$numrow++;
+		}
+
+		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+		$excel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
+		$excel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
 
 		$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
 		$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
@@ -599,13 +784,31 @@ class Web extends CI_Controller {
 		$this->load->view('v_footer_dh',$data);
 	}
 
-	function search_history(){ 
-		$search = $this->input->get('search');
-		$data['form_done'] = $this->m_data->search_ticket_done($search)->result();
+	function search_history(){
+		$noticket = (int)$this->input->get('noticket');
+		$name = $this->input->get('name');
+		$from = $this->input->get('from');
+		$case = $this->input->get('case');
+		$status = $this->input->get('status');
+		$data['form_done'] = $this->m_data->searchbox_history($noticket,$name,$from,$case,$status)->result();
 		$data['judul'] = "History";
+		$searchbox = array(
+			'noticket' => $noticket,
+			'from' => $from,
+			'name' => $name,
+			'case' => $case,
+			'status' => $status
+		);
+		$this->session->set_userdata($searchbox);
+		if($noticket == 0) {
+			$this->session->set_userdata('noticket',null);
+		} else {
+			$this->session->set_userdata('noticket',$noticket);
+		}
 		$this->load->view('v_header',$data);
 		$this->load->view('view_history',$data);
 		$this->load->view('v_footer',$data);
+		$this->session->sess_destroy();	
 	}
 
 }
